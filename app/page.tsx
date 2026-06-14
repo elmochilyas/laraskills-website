@@ -12,7 +12,8 @@ import WorkflowStep from "@/components/WorkflowStep";
 import WorkflowArrow from "@/components/WorkflowArrow";
 import CliCommandCard from "@/components/CliCommandCard";
 import McpToolCard from "@/components/McpToolCard";
-import SupportedToolCard from "@/components/SupportedToolCard";
+import IntegrationCloudItem from "@/components/IntegrationCloudItem";
+import IntegrationGroupCard from "@/components/IntegrationGroupCard";
 import metricsData from "@/data/homepage-metrics.json";
 import supportedTools from "@/data/supported-tools.json";
 
@@ -362,25 +363,31 @@ export default function Home() {
               Integrations
             </span>
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Works with your stack
+              Works with your Laravel AI stack
             </h2>
             <p className="mt-2 text-text-muted">
-              Laraskills plugs into the coding agents and editors your team already uses
+              Use Laraskills with the coding agents, editors, and assistants already in your workflow.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {supportedTools.tools.map((tool, index) => (
-              <SupportedToolCard
-                key={index}
-                name={tool.name}
-                shortName={tool.shortName}
-                type={tool.type}
-                description={tool.description}
-                icon={tool.icon}
+
+          <div className="mb-14 flex flex-wrap justify-center gap-3">
+            {supportedTools.allTools.map((tool, i) => (
+              <IntegrationCloudItem key={i} name={tool.name} icon={tool.icon} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {supportedTools.groups.map((group) => (
+              <IntegrationGroupCard
+                key={group.id}
+                title={group.title}
+                description={group.description}
+                tools={group.tools}
               />
             ))}
           </div>
-          <p className="mt-6 text-center text-[11px] text-text-muted/50">
+
+          <p className="mt-10 text-center text-[11px] text-text-muted/50">
             Tool names and logos are trademarks of their respective owners.
           </p>
         </PageContainer>
