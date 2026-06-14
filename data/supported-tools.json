@@ -1,0 +1,16 @@
+{
+  "tools": [
+    { "name": "OpenCode", "shortName": "OC", "type": "Agent CLI", "description": "Run Laraskills-guided tasks from your terminal.", "icon": "opencode", "hex": "000000" },
+    { "name": "Claude Code", "shortName": "CC", "type": "Agent CLI", "description": "Agentic coding with Claude in your terminal.", "icon": "claude", "hex": "D97757" },
+    { "name": "Cursor", "shortName": "CR", "type": "AI IDE", "description": "AI-first code editor with deep context.", "icon": "cursor", "hex": "000000" },
+    { "name": "Gemini CLI", "shortName": "GM", "type": "Agent CLI", "description": "Google's agentic coding assistant.", "icon": "googlegemini", "hex": "8E75B2" },
+    { "name": "Codex CLI", "shortName": "CX", "type": "Agent CLI", "description": "OpenAI's terminal-based coding agent." },
+    { "name": "GitHub Copilot", "shortName": "GH", "type": "AI Assistant", "description": "AI pair programmer across editors.", "icon": "githubcopilot", "hex": "000000" },
+    { "name": "VS Code", "shortName": "VS", "type": "Editor", "description": "Popular extensible code editor." },
+    { "name": "Zed", "shortName": "ZD", "type": "Editor", "description": "High-performance collaborative editor.", "icon": "zedindustries", "hex": "084CCF" },
+    { "name": "Trae", "shortName": "TR", "type": "AI IDE", "description": "AI-native IDE from ByteDance." },
+    { "name": "Qwen", "shortName": "QW", "type": "Agent CLI", "description": "Alibaba's code generation agent.", "icon": "qwen", "hex": "6950EF" },
+    { "name": "CodeBuddy", "shortName": "CB", "type": "Assistant", "description": "AI coding assistant for multiple editors." },
+    { "name": "Kiro", "shortName": "KR", "type": "Assistant", "description": "Agentic coding assistant for the terminal." }
+  ]
+}

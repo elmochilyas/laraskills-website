@@ -12,7 +12,9 @@ import WorkflowStep from "@/components/WorkflowStep";
 import WorkflowArrow from "@/components/WorkflowArrow";
 import CliCommandCard from "@/components/CliCommandCard";
 import McpToolCard from "@/components/McpToolCard";
+import SupportedToolCard from "@/components/SupportedToolCard";
 import metricsData from "@/data/homepage-metrics.json";
+import supportedTools from "@/data/supported-tools.json";
 
 export default function Home() {
   /* TODO: verify `npx laraskills@beta` is the final npm package name before production launch */
@@ -348,6 +350,119 @@ export default function Home() {
                 description={tool.description}
               />
             ))}
+          </div>
+        </PageContainer>
+      </Section>
+
+      {/* Supported Tools Section */}
+      <Section>
+        <PageContainer>
+          <div className="mb-12 text-center">
+            <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
+              Integrations
+            </span>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Works with your stack
+            </h2>
+            <p className="mt-2 text-text-muted">
+              Laraskills plugs into the coding agents and editors your team already uses
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {supportedTools.tools.map((tool, index) => (
+              <SupportedToolCard
+                key={index}
+                name={tool.name}
+                shortName={tool.shortName}
+                type={tool.type}
+                description={tool.description}
+                icon={tool.icon}
+              />
+            ))}
+          </div>
+          <p className="mt-6 text-center text-[11px] text-text-muted/50">
+            Tool names and logos are trademarks of their respective owners.
+          </p>
+        </PageContainer>
+      </Section>
+
+      {/* Research Section */}
+      <Section variant="dark">
+        <PageContainer>
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Research & evidence
+            </h2>
+            <p className="mt-2 text-text-muted">
+              In an attribution study, Laraskills was tested against baseline coding agents across multiple Laravel implementation scenarios. The results are measured and reproducible.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center">
+              <span className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">9</span>
+              <span className="mt-1 text-sm text-text-muted">Isolated OpenCode runs</span>
+            </div>
+            <div className="flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center">
+              <span className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">3</span>
+              <span className="mt-1 text-sm text-text-muted">Laravel implementation scenarios</span>
+            </div>
+            <div className="flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center">
+              <span className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">100%</span>
+              <span className="mt-1 text-sm text-text-muted">Test &amp; Pint pass rate</span>
+            </div>
+            <div className="flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center">
+              <span className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">2/3</span>
+              <span className="mt-1 text-sm text-text-muted">Required-context mode won</span>
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <p className="mb-4 text-sm text-text-muted">
+              These results are from a controlled study and do not claim Laraskills always outperforms baseline agents. Performance depends on task complexity, agent choice, and configuration.
+            </p>
+            <Button variant="secondary" href="/research">
+              Read the research
+            </Button>
+          </div>
+        </PageContainer>
+      </Section>
+
+      {/* Final CTA Section */}
+      <Section>
+        <PageContainer>
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Ready to ship better Laravel code?
+            </h2>
+            <p className="mt-2 text-text-muted">
+              Install Laraskills and give your coding agent Laravel-specific context in seconds.
+            </p>
+
+            <Card className="mt-8 text-left">
+              <div className="flex items-center justify-between border-b border-border pb-3 mb-3">
+                <span className="text-xs font-medium text-text-muted uppercase tracking-wider">
+                  Terminal
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-500" />
+                </div>
+              </div>
+              <pre className="overflow-x-auto text-sm">
+                <code className="text-text-muted">
+                  <span className="text-green-400">$</span> npx laraskills@beta install
+                </code>
+              </pre>
+            </Card>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Button size="lg" href="https://github.com/elmochilyas/laraskills">
+                Install Laraskills
+              </Button>
+              <Button variant="secondary" size="lg" href="https://github.com/elmochilyas/laraskills">
+                View GitHub
+              </Button>
+            </div>
           </div>
         </PageContainer>
       </Section>
