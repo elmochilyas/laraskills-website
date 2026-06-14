@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Skills", href: "/skills" },
   { label: "MCP", href: "/mcp" },
   { label: "Research", href: "/research" },
+  { label: "Glossary", href: "/glossary" },
   { label: "GitHub", href: "https://github.com/elmochilyas/laraskills", external: true },
 ];
 
@@ -27,7 +28,11 @@ export default function Header() {
 
         <nav className="hidden items-center gap-6 sm:flex">
           {navLinks.map((link) => {
-            const isActive = !link.external && pathname === link.href;
+            const isActive = !link.external && (
+              link.href === "/docs"
+                ? pathname === "/docs" || pathname.startsWith("/docs/")
+                : pathname === link.href
+            );
             return (
               <Link
                 key={link.label}
