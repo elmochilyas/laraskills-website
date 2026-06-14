@@ -194,13 +194,37 @@ The system SHALL display a step-by-step workflow visual showing how a developer 
 - **WHEN** a WorkflowStep is rendered
 - **THEN** it SHALL display a step number, a label, and a brief description of that stage
 
-### Requirement: All sections reuse existing layout components
-The system SHALL wrap all four new sections in the existing `Section` and `PageContainer` components for consistent layout.
+### Requirement: CLI showcase section displays Laraskills commands
 
-#### Scenario: Each section uses Section as wrapper
-- **WHEN** any of the four new sections is rendered
+The system SHALL display a CLI showcase section below the workflow section showing 6 practical `npx laraskills` commands in terminal-style cards.
+
+#### Scenario: Section follows existing layout pattern
+- **WHEN** the CLI showcase section is rendered
+- **THEN** it SHALL use `Section` and `PageContainer` for consistent layout, with a heading and subtitle above a responsive grid
+
+#### Scenario: Section appears after workflow
+- **WHEN** the homepage is rendered
+- **THEN** the CLI showcase section SHALL appear after the workflow section
+
+### Requirement: MCP showcase section displays read-only MCP tools
+
+The system SHALL display an MCP showcase section below the CLI showcase section showing 5 read-only MCP tools in description cards.
+
+#### Scenario: Section follows existing layout pattern
+- **WHEN** the MCP showcase section is rendered
+- **THEN** it SHALL use `Section` and `PageContainer` for consistent layout, with a heading and subtitle above a responsive grid
+
+#### Scenario: Section appears after CLI showcase
+- **WHEN** the homepage is rendered
+- **THEN** the MCP showcase section SHALL appear after the CLI showcase section
+
+### Requirement: All sections reuse existing layout components
+The system SHALL wrap all content sections in the existing `Section` and `PageContainer` components for consistent layout.
+
+#### Scenario: Each content section uses Section as wrapper
+- **WHEN** any content section on the homepage is rendered
 - **THEN** it SHALL use the `Section` component as the outer wrapper with consistent vertical padding
 
-#### Scenario: Each section uses PageContainer for content width
-- **WHEN** any of the four new sections is rendered
+#### Scenario: Each content section uses PageContainer for content width
+- **WHEN** any content section on the homepage is rendered
 - **THEN** its content SHALL be wrapped in `PageContainer` for consistent max-width and padding
