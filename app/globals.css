@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand: #e63946;
+  --color-surface: #0a0a0a;
+  --color-surface-alt: #141414;
+  --color-border: #1f1f1f;
+  --color-text: #e5e5e5;
+  --color-text-muted: #a3a3a3;
+  --color-text-inverse: #ffffff;
+}
+
+html {
+  min-height: 100dvh;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+body {
+  min-height: 100dvh;
+}

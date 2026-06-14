@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Laraskills",
+  title: "Laraskills — Laravel AI Engineering Knowledge System",
   description:
     "Laravel-focused AI coding-agent operating layer and engineering knowledge system.",
+  openGraph: {
+    title: "Laraskills — Laravel AI Engineering Knowledge System",
+    description:
+      "Laravel-focused AI coding-agent operating layer and engineering knowledge system.",
+    siteName: "Laraskills",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -14,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-dvh flex-col">
+        <Header />
+        <main className="flex flex-1 flex-col">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
