@@ -1,9 +1,21 @@
 import CliCommandCard from "@/components/CliCommandCard";
 
-export const metadata = {
-  title: "OpenCode Setup — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "OpenCode Setup",
   description:
     "Configure OpenCode to use Laraskills skills, rules, and MCP tools.",
+  openGraph: {
+    title: "OpenCode Setup — Laraskills",
+    description:
+      "Configure OpenCode to use Laraskills skills, rules, and MCP tools.",
+  },
+  twitter: {
+    title: "OpenCode Setup — Laraskills",
+    description:
+      "Configure OpenCode to use Laraskills skills, rules, and MCP tools.",
+  },
 };
 
 export default function OpenCodeSetupPage() {

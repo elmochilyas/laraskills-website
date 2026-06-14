@@ -1,9 +1,22 @@
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Glossary — Laraskills",
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  title: "Glossary",
   description:
     "Key terms and concepts used in the Laraskills engineering knowledge system.",
+  openGraph: {
+    title: "Glossary — Laraskills",
+    description:
+      "Key terms and concepts used in the Laraskills engineering knowledge system.",
+  },
+  twitter: {
+    title: "Glossary — Laraskills",
+    description:
+      "Key terms and concepts used in the Laraskills engineering knowledge system.",
+  },
 };
 
 const terms = [
@@ -57,6 +70,24 @@ const terms = [
 export default function GlossaryPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Glossary — Laraskills",
+            description:
+              "Key terms and concepts used in the Laraskills engineering knowledge system.",
+            url: `${siteConfig.url}/glossary`,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Laraskills",
+              url: siteConfig.url,
+            },
+          }),
+        }}
+      />
       <h1 className="text-3xl font-bold tracking-tight text-text">
         Glossary
       </h1>

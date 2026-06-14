@@ -2,10 +2,22 @@ import Link from "next/link";
 import CliCommandCard from "@/components/CliCommandCard";
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Getting Started — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Getting Started",
   description:
     "Get started with Laraskills in under a minute. Install, verify, and connect to your AI coding agent.",
+  openGraph: {
+    title: "Getting Started — Laraskills",
+    description:
+      "Get started with Laraskills in under a minute. Install, verify, and connect to your AI coding agent.",
+  },
+  twitter: {
+    title: "Getting Started — Laraskills",
+    description:
+      "Get started with Laraskills in under a minute. Install, verify, and connect to your AI coding agent.",
+  },
 };
 
 export default function GettingStartedPage() {

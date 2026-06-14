@@ -1,10 +1,22 @@
 import McpToolCard from "@/components/McpToolCard";
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "MCP Support — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MCP Support",
   description:
     "Laraskills provides read-only Model Context Protocol (MCP) support for deterministic local retrieval of Laravel engineering knowledge.",
+  openGraph: {
+    title: "MCP Support — Laraskills",
+    description:
+      "Laraskills provides read-only Model Context Protocol (MCP) support for deterministic local retrieval of Laravel engineering knowledge.",
+  },
+  twitter: {
+    title: "MCP Support — Laraskills",
+    description:
+      "Laraskills provides read-only Model Context Protocol (MCP) support for deterministic local retrieval of Laravel engineering knowledge.",
+  },
 };
 
 const tools = [

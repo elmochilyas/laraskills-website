@@ -16,6 +16,7 @@ import IntegrationCloudItem from "@/components/IntegrationCloudItem";
 import IntegrationGroupCard from "@/components/IntegrationGroupCard";
 import metricsData from "@/data/homepage-metrics.json";
 import supportedTools from "@/data/supported-tools.json";
+import { siteConfig } from "@/lib/site-config";
 
 export default function Home() {
   /* TODO: verify `npx laraskills@beta` is the final npm package name before production launch */
@@ -129,6 +130,18 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Laraskills",
+            url: siteConfig.url,
+            description: siteConfig.description,
+          }),
+        }}
+      />
       {/* Hero Section */}
       <Section className="relative overflow-hidden">
         <div

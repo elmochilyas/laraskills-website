@@ -1,0 +1,19 @@
+# Laraskills
+
+Laraskills is a Laravel AI engineering knowledge system. It gives AI coding agents Laravel-specific skills, rules, retrieval workflows, and MCP support for deeper context and fewer guesses.
+
+## Docs
+
+- [Documentation](/docs): Overview of the Laraskills documentation.
+- [Getting Started](/docs/getting-started): Install and verify Laraskills in under a minute.
+- [Installation](/docs/installation): Install via npm, build from source, update, and diagnose.
+- [CLI Reference](/docs/cli): All Laraskills CLI commands: install, retrieve, search, get, validate, doctor.
+- [MCP Support](/docs/mcp): Read-only MCP tools for deterministic local knowledge retrieval.
+- [OpenCode Setup](/docs/opencode-setup): Configure OpenCode to use Laraskills skills and MCP tools.
+- [Integrations](/docs/integrations): Supported AI coding agents, IDEs, and editors.
+- [Skills](/docs/skills): Skill workflows for Core Engineering, Testing, Security, Data, API, and DevOps.
+
+## Reference
+
+- [Glossary](/glossary): Key terms and concepts in the Laraskills knowledge system.
+- [Research](/research): Attribution study measuring Laraskills impact on coding agent performance.

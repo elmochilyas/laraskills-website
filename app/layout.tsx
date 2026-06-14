@@ -2,17 +2,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Laraskills — Laravel AI Engineering Knowledge System",
-  description:
-    "Laravel-focused AI coding-agent operating layer and engineering knowledge system.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "Laraskills — Laravel AI Engineering Knowledge System",
+    template: "%s — Laraskills",
+  },
+  description: siteConfig.description,
   openGraph: {
-    title: "Laraskills — Laravel AI Engineering Knowledge System",
-    description:
-      "Laravel-focused AI coding-agent operating layer and engineering knowledge system.",
-    siteName: "Laraskills",
+    title: {
+      default: "Laraskills — Laravel AI Engineering Knowledge System",
+      template: "%s — Laraskills",
+    },
+    description: siteConfig.description,
+    siteName: siteConfig.name,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "Laraskills — Laravel AI Engineering Knowledge System",
+      template: "%s — Laraskills",
+    },
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

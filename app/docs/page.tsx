@@ -1,10 +1,22 @@
 import Link from "next/link";
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Documentation — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Documentation",
   description:
     "Learn how to install, configure, and use Laraskills with your AI coding agent.",
+  openGraph: {
+    title: "Documentation — Laraskills",
+    description:
+      "Learn how to install, configure, and use Laraskills with your AI coding agent.",
+  },
+  twitter: {
+    title: "Documentation — Laraskills",
+    description:
+      "Learn how to install, configure, and use Laraskills with your AI coding agent.",
+  },
 };
 
 const sections = [

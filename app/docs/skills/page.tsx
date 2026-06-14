@@ -1,9 +1,21 @@
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Skills — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Skills",
   description:
     "Laraskills skill workflows provide AI coding agents with structured Laravel development capabilities.",
+  openGraph: {
+    title: "Skills — Laraskills",
+    description:
+      "Laraskills skill workflows provide AI coding agents with structured Laravel development capabilities.",
+  },
+  twitter: {
+    title: "Skills — Laraskills",
+    description:
+      "Laraskills skill workflows provide AI coding agents with structured Laravel development capabilities.",
+  },
 };
 
 const skillCategories = [

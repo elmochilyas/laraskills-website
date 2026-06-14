@@ -1,9 +1,21 @@
 import CliCommandCard from "@/components/CliCommandCard";
 
-export const metadata = {
-  title: "CLI Reference — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CLI Reference",
   description:
     "Complete documentation for the Laraskills CLI commands: install, retrieve, search, get, validate, doctor.",
+  openGraph: {
+    title: "CLI Reference — Laraskills",
+    description:
+      "Complete documentation for the Laraskills CLI commands: install, retrieve, search, get, validate, doctor.",
+  },
+  twitter: {
+    title: "CLI Reference — Laraskills",
+    description:
+      "Complete documentation for the Laraskills CLI commands: install, retrieve, search, get, validate, doctor.",
+  },
 };
 
 const commands = [

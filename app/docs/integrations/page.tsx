@@ -1,10 +1,22 @@
 import Link from "next/link";
 import Card from "@/components/Card";
 
-export const metadata = {
-  title: "Integrations — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Integrations",
   description:
     "Laraskills integrates with AI coding agents, IDEs, and editors through MCP and CLI.",
+  openGraph: {
+    title: "Integrations — Laraskills",
+    description:
+      "Laraskills integrates with AI coding agents, IDEs, and editors through MCP and CLI.",
+  },
+  twitter: {
+    title: "Integrations — Laraskills",
+    description:
+      "Laraskills integrates with AI coding agents, IDEs, and editors through MCP and CLI.",
+  },
 };
 
 const categories = [

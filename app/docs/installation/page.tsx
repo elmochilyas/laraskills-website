@@ -1,9 +1,21 @@
 import CliCommandCard from "@/components/CliCommandCard";
 
-export const metadata = {
-  title: "Installation — Laraskills",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Installation",
   description:
     "Install Laraskills via npm, build from source, update, and run diagnostics.",
+  openGraph: {
+    title: "Installation — Laraskills",
+    description:
+      "Install Laraskills via npm, build from source, update, and run diagnostics.",
+  },
+  twitter: {
+    title: "Installation — Laraskills",
+    description:
+      "Install Laraskills via npm, build from source, update, and run diagnostics.",
+  },
 };
 
 export default function InstallationPage() {

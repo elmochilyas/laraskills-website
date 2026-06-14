@@ -1,0 +1,10 @@
+# Laraskills
+
+Laravel AI engineering knowledge system for AI coding agents.
+
+Repository: https://github.com/elmochilyas/laraskills
+Website: https://laraskills.dev
+
+## Contributors
+
+See https://github.com/elmochilyas/laraskills/graphs/contributors
