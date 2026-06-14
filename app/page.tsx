@@ -10,6 +10,8 @@ import ComparisonTable from "@/components/ComparisonTable";
 import ArchitectureLayerCard from "@/components/ArchitectureLayerCard";
 import WorkflowStep from "@/components/WorkflowStep";
 import WorkflowArrow from "@/components/WorkflowArrow";
+import CliCommandCard from "@/components/CliCommandCard";
+import McpToolCard from "@/components/McpToolCard";
 import metricsData from "@/data/homepage-metrics.json";
 
 export default function Home() {
@@ -101,6 +103,25 @@ export default function Home() {
       label: "Validation checklist",
       description: "Verify against rules and patterns",
     },
+  ];
+
+  /* TODO: verify `npx laraskills` (and @beta tag) is the final npm package name and CLI entry before production launch */
+  const cliCommands = [
+    { command: "npx laraskills@beta install", label: "Install Laraskills" },
+    { command: 'npx laraskills retrieve "Optimize an N+1 query" --mode compact', label: "Retrieve context" },
+    { command: 'npx laraskills search "Policies versus Gates"', label: "Search knowledge" },
+    { command: "npx laraskills get security-identity-engineering/authentication/sanctum-spa-authentication", label: "Inspect knowledge unit" },
+    { command: "npx laraskills validate", label: "Validate knowledge graph" },
+    { command: "npx laraskills doctor", label: "System diagnostics" },
+  ];
+
+  /* TODO: verify these MCP tool names match the real Laraskills MCP server exports before production launch */
+  const mcpTools = [
+    { name: "retrieve_context_bundle", description: "Return the smallest useful Laraskills context bundle for a Laravel engineering task." },
+    { name: "search_ecc", description: "Search the Laraskills knowledge unit catalog with ranked results." },
+    { name: "get_knowledge_unit", description: "Inspect a single canonical knowledge unit by ID with bounded content." },
+    { name: "get_graph_context", description: "Return prerequisites and related topics for a knowledge unit." },
+    { name: "validate_ecc", description: "Validate the structural integrity of the Laraskills intelligence layer." },
   ];
 
   return (
@@ -280,6 +301,52 @@ export default function Home() {
                   </>
                 )}
               </div>
+            ))}
+          </div>
+        </PageContainer>
+      </Section>
+
+      {/* CLI Showcase Section */}
+      <Section>
+        <PageContainer>
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              CLI at your fingertips
+            </h2>
+            <p className="mt-2 text-text-muted">
+              Real commands to install, retrieve, search, inspect, and diagnose — all from your terminal
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {cliCommands.map((cmd, index) => (
+              <CliCommandCard
+                key={index}
+                command={cmd.command}
+                label={cmd.label}
+              />
+            ))}
+          </div>
+        </PageContainer>
+      </Section>
+
+      {/* MCP Showcase Section */}
+      <Section variant="dark">
+        <PageContainer>
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              MCP tools for coding agents
+            </h2>
+            <p className="mt-2 text-text-muted">
+              Laraskills exposes read-only, deterministic, local-retrieval MCP tools for compatible coding agents
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {mcpTools.map((tool, index) => (
+              <McpToolCard
+                key={index}
+                name={tool.name}
+                description={tool.description}
+              />
             ))}
           </div>
         </PageContainer>
