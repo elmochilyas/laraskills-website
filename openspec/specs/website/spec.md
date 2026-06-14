@@ -93,7 +93,7 @@ The system SHALL provide a `Card` component with a subtle border, rounded corner
 - **THEN** it SHALL have a border, rounded corners, and padding
 
 ### Requirement: Header displays navigation links
-The system SHALL provide a `Header` component that displays the Laraskills brand name and navigation links: Home, Docs, Skills, MCP, Research, GitHub.
+The system SHALL provide a `Header` component that displays the Laraskills brand name and navigation links: Home, Docs, Skills, MCP, Research, Glossary, GitHub.
 
 #### Scenario: Header renders brand name
 - **WHEN** the `Header` is rendered
@@ -101,14 +101,18 @@ The system SHALL provide a `Header` component that displays the Laraskills brand
 
 #### Scenario: Header renders navigation links
 - **WHEN** the `Header` is rendered
-- **THEN** it SHALL display navigation links for Home (`/`), Docs (`/docs`), Skills (`/skills`), MCP (`/mcp`), Research (`/research`), and GitHub (external link)
+- **THEN** it SHALL display navigation links for Home (`/`), Docs (`/docs`), Skills (`/skills`), MCP (`/mcp`), Research (`/research`), Glossary (`/glossary`), and GitHub (external link)
 
 #### Scenario: Header is sticky
 - **WHEN** the `Header` is rendered
 - **THEN** it SHALL be fixed or sticky at the top of the viewport
 
+#### Scenario: Header active link highlights for nested docs routes
+- **WHEN** a user visits `/docs/getting-started` or any other `/docs/*` route
+- **THEN** the "Docs" navigation link SHALL be highlighted as active
+
 ### Requirement: Footer displays links and description
-The system SHALL provide a `Footer` component that displays a short Laraskills description and links to Docs, GitHub, MCP, and Research.
+The system SHALL provide a `Footer` component that displays a short Laraskills description and links to Docs, Glossary, GitHub, MCP, and Research.
 
 #### Scenario: Footer renders with description
 - **WHEN** the `Footer` is rendered
@@ -116,7 +120,7 @@ The system SHALL provide a `Footer` component that displays a short Laraskills d
 
 #### Scenario: Footer renders with links
 - **WHEN** the `Footer` is rendered
-- **THEN** it SHALL display links to Docs (`/docs`), GitHub (external), MCP (`/mcp`), and Research (`/research`)
+- **THEN** it SHALL display links to Docs (`/docs`), Glossary (`/glossary`), GitHub (external), MCP (`/mcp`), and Research (`/research`)
 
 ### Requirement: Layout includes Header and Footer
 The system SHALL integrate the `Header` and `Footer` components into the root layout (`app/layout.tsx`) so they appear on every page.
