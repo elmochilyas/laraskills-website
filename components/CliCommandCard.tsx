@@ -27,29 +27,29 @@ export default function CliCommandCard({
 
   return (
     <div
-      className={`rounded-xl border border-border bg-surface p-4 sm:p-5 ${className}`}
+      className={`card-base p-4 sm:p-5 group ${className}`}
     >
-      <div className="flex items-center justify-between border-b border-border pb-2 mb-3">
+      <div className="flex items-center justify-between border-b border-border/80 pb-2 mb-3">
         <span className="text-xs font-medium text-text-muted uppercase tracking-wider">
           {label}
         </span>
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-500" />
+          <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
         </div>
       </div>
-      <div className="text-sm whitespace-pre-wrap break-words">
-        <span className="text-green-400">$</span>{" "}
+      <div className="text-sm whitespace-pre-wrap break-words font-mono">
+        <span className="text-green-400/80">$</span>{" "}
         {renderCommand(command)}
       </div>
       <button
         onClick={copyCommand}
-        className="mt-3 inline-flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-text-muted hover:text-text"
+        className="mt-3 inline-flex items-center gap-2 rounded-md border border-border/80 px-3 py-1.5 text-xs font-medium text-text-muted transition-all duration-200 hover:border-text-muted/30 hover:text-text hover:bg-white/[0.03] active:scale-95"
       >
         {copied ? (
           <>
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="h-3.5 w-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             Copied
@@ -73,35 +73,35 @@ function renderCommand(full: string): React.ReactNode {
     if (part.trim() === "") return part;
     if (part.startsWith("npx")) {
       return (
-        <span key={i} className="text-purple-400">
+        <span key={i} className="text-purple-400/90">
           {part}
         </span>
       );
     }
     if (part.startsWith("--")) {
       return (
-        <span key={i} className="text-yellow-400">
+        <span key={i} className="text-yellow-400/80">
           {part}
         </span>
       );
     }
     if (part.startsWith('"') || part.startsWith("'")) {
       return (
-        <span key={i} className="text-orange-300">
+        <span key={i} className="text-orange-300/80">
           {part}
         </span>
       );
     }
     if (part.startsWith("@") || part.startsWith("beta")) {
       return (
-        <span key={i} className="text-cyan-400">
+        <span key={i} className="text-cyan-400/80">
           {part}
         </span>
       );
     }
     if (part.startsWith("/")) {
       return (
-        <span key={i} className="text-blue-300">
+        <span key={i} className="text-blue-300/80">
           {part}
         </span>
       );

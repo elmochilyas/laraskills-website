@@ -24,8 +24,8 @@ function ComparisonColumn({
     <div
       className={`flex flex-col rounded-xl border p-6 ${
         isBefore
-          ? "border-border bg-surface-alt"
-          : "border-brand bg-surface"
+          ? "card-base"
+          : "card-featured bg-surface-card"
       }`}
     >
       <h3
@@ -40,12 +40,12 @@ function ComparisonColumn({
           <li key={index} className="flex items-start gap-3 text-sm text-text">
             <span
               className={`mt-0.5 shrink-0 text-base ${
-                isBefore ? "text-text-muted" : "text-brand"
+                isBefore ? "text-text-muted/40" : "text-brand"
               }`}
             >
               {isBefore ? "✕" : "✓"}
             </span>
-            <span>{item.label}</span>
+            <span className={isBefore ? "text-text-muted" : ""}>{item.label}</span>
           </li>
         ))}
       </ul>

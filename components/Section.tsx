@@ -1,10 +1,16 @@
-type SectionVariant = "default" | "dark";
+type SectionVariant = "default" | "dark" | "elevated";
 
 type SectionProps = {
   variant?: SectionVariant;
   id?: string;
   children: React.ReactNode;
   className?: string;
+};
+
+const variantClasses: Record<SectionVariant, string> = {
+  default: "section-default",
+  dark: "section-dark",
+  elevated: "section-elevated",
 };
 
 export default function Section({
@@ -16,7 +22,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 ${variant === "dark" ? "bg-surface-alt" : ""} ${className}`}
+      className={`py-16 md:py-24 ${variantClasses[variant]} ${className}`}
     >
       {children}
     </section>

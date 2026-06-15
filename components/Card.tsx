@@ -1,12 +1,13 @@
 type CardProps = {
   children: React.ReactNode;
   className?: string;
+  featured?: boolean;
 };
 
-export default function Card({ children, className = "" }: CardProps) {
+export default function Card({ children, className = "", featured = false }: CardProps) {
   return (
     <div
-      className={`rounded-xl border border-border bg-surface p-6 ${className}`}
+      className={`${featured ? "card-featured" : "card-base"} p-6 ${className}`}
     >
       {children}
     </div>

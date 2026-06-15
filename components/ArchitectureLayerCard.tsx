@@ -10,8 +10,8 @@ export default function ArchitectureLayerCard({
   items,
 }: ArchitectureLayerCardProps) {
   return (
-    <div className="flex flex-col rounded-xl border border-border bg-surface p-6">
-      <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 text-sm font-bold text-brand">
+    <div className="card-base flex flex-col p-6 group">
+      <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 text-sm font-bold text-brand ring-1 ring-brand/20 group-hover:bg-brand/15 group-hover:ring-brand/30 transition-all duration-200">
         {number}
       </span>
       <h3 className="mb-3 text-lg font-semibold text-text">{title}</h3>
