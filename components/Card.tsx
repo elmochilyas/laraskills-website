@@ -7,7 +7,7 @@ type CardProps = {
 export default function Card({ children, className = "", featured = false }: CardProps) {
   return (
     <div
-      className={`${featured ? "card-featured" : "card-base"} p-6 ${className}`}
+      className={`${featured ? "card-featured" : "card"} p-6 ${className}`}
     >
       {children}
     </div>

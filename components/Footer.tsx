@@ -10,13 +10,13 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/60 bg-surface-alt">
+    <footer className="border-t border-border/50 bg-bg-alt">
       <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-sm">
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-text hover:text-brand transition-colors duration-200"
+              className="font-display text-lg font-semibold tracking-tight text-text hover:text-brand transition-colors duration-200"
             >
               Laraskills
             </Link>
@@ -41,7 +41,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-8 border-t border-border/50 pt-6 text-center text-xs text-text-muted/60">
+        <div className="mt-8 border-t border-border/50 pt-6 text-center text-xs text-text-dim">
           &copy; {new Date().getFullYear()} Laraskills. All rights reserved.
         </div>
       </div>

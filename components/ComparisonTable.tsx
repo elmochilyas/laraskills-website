@@ -24,12 +24,12 @@ function ComparisonColumn({
     <div
       className={`flex flex-col rounded-xl border p-6 ${
         isBefore
-          ? "card-base"
-          : "card-featured bg-surface-card"
+          ? "card"
+          : "card-featured"
       }`}
     >
       <h3
-        className={`mb-4 text-lg font-semibold ${
+        className={`font-display mb-4 text-lg font-semibold ${
           isBefore ? "text-text-muted" : "text-brand"
         }`}
       >
@@ -40,10 +40,10 @@ function ComparisonColumn({
           <li key={index} className="flex items-start gap-3 text-sm text-text">
             <span
               className={`mt-0.5 shrink-0 text-base ${
-                isBefore ? "text-text-muted/40" : "text-brand"
+                isBefore ? "text-text-dim" : "text-accent"
               }`}
             >
-              {isBefore ? "✕" : "✓"}
+              {isBefore ? "âœ•" : "âœ“"}
             </span>
             <span className={isBefore ? "text-text-muted" : ""}>{item.label}</span>
           </li>

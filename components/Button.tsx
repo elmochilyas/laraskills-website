@@ -13,11 +13,11 @@ type ButtonProps = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand text-text-inverse border border-brand hover:brightness-110 shadow-lg shadow-brand/20 hover:shadow-xl hover:shadow-brand/30 active:scale-[0.98]",
+    "bg-brand text-white border border-brand/80 hover:brightness-110 shadow-lg shadow-brand/15 hover:shadow-xl hover:shadow-brand/25 active:scale-[0.97]",
   secondary:
-    "bg-transparent text-text border-border hover:border-text-muted/40 hover:text-text hover:bg-white/[0.03] shadow-sm hover:shadow-md",
+    "bg-transparent text-text-muted border border-border hover:text-text hover:border-border-light hover:bg-white/[0.03]",
   ghost:
-    "bg-transparent text-text-muted hover:text-text hover:bg-white/[0.04]",
+    "bg-transparent text-text-muted hover:text-text hover:bg-white/[0.04] border border-transparent",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

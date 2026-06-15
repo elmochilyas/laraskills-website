@@ -13,9 +13,9 @@ type IntegrationGroupCardProps = {
 
 export default function IntegrationGroupCard({ title, description, tools }: IntegrationGroupCardProps) {
   return (
-    <div className="card-base flex flex-col p-6 group">
+    <div className="card flex flex-col p-6 group">
       <div className="mb-1">
-        <span className="inline-flex items-center rounded-full border border-brand/20 bg-brand/[0.06] px-3 py-0.5 text-[11px] font-semibold text-brand uppercase tracking-wider transition-colors duration-200 group-hover:bg-brand/[0.1] group-hover:border-brand/30">
+        <span className="inline-flex items-center rounded-full border border-brand/15 bg-brand-subtle px-3 py-0.5 text-[11px] font-semibold text-brand uppercase tracking-wider transition-colors duration-200 group-hover:bg-brand/[0.1] group-hover:border-brand/25">
           {title}
         </span>
       </div>

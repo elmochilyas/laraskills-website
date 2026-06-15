@@ -10,11 +10,11 @@ export default function ArchitectureLayerCard({
   items,
 }: ArchitectureLayerCardProps) {
   return (
-    <div className="card-base flex flex-col p-6 group">
-      <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 text-sm font-bold text-brand ring-1 ring-brand/20 group-hover:bg-brand/15 group-hover:ring-brand/30 transition-all duration-200">
+    <div className="card flex flex-col p-6 group">
+      <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-subtle text-sm font-semibold text-brand transition-all duration-200 group-hover:bg-brand/[0.12]">
         {number}
       </span>
-      <h3 className="mb-3 text-lg font-semibold text-text">{title}</h3>
+      <h3 className="font-display mb-3 text-lg font-semibold text-text">{title}</h3>
       <ul className="flex flex-col gap-1.5">
         {items.map((item, index) => (
           <li key={index} className="text-sm text-text-muted">

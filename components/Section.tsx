@@ -1,4 +1,4 @@
-type SectionVariant = "default" | "dark" | "elevated";
+type SectionVariant = "surface" | "alt" | "elevated";
 
 type SectionProps = {
   variant?: SectionVariant;
@@ -8,13 +8,13 @@ type SectionProps = {
 };
 
 const variantClasses: Record<SectionVariant, string> = {
-  default: "section-default",
-  dark: "section-dark",
+  surface: "section-surface",
+  alt: "section-alt",
   elevated: "section-elevated",
 };
 
 export default function Section({
-  variant = "default",
+  variant = "surface",
   id,
   children,
   className = "",

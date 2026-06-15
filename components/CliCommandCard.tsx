@@ -26,9 +26,7 @@ export default function CliCommandCard({
   };
 
   return (
-    <div
-      className={`card-base p-4 sm:p-5 group ${className}`}
-    >
+    <div className={`card p-4 sm:p-5 group ${className}`}>
       <div className="flex items-center justify-between border-b border-border/80 pb-2 mb-3">
         <span className="text-xs font-medium text-text-muted uppercase tracking-wider">
           {label}
@@ -39,8 +37,8 @@ export default function CliCommandCard({
           <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
         </div>
       </div>
-      <div className="text-sm whitespace-pre-wrap break-words font-mono">
-        <span className="text-green-400/80">$</span>{" "}
+      <div className="font-mono text-sm whitespace-pre-wrap break-words">
+        <span className="text-accent/80">$</span>{" "}
         {renderCommand(command)}
       </div>
       <button
@@ -49,7 +47,7 @@ export default function CliCommandCard({
       >
         {copied ? (
           <>
-            <svg className="h-3.5 w-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="h-3.5 w-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             Copied

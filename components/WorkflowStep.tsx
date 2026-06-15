@@ -11,7 +11,7 @@ export default function WorkflowStep({
 }: WorkflowStepProps) {
   return (
     <div className="flex flex-col items-center text-center group">
-      <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-card text-sm font-bold text-brand shadow-sm transition-all duration-200 group-hover:border-brand/30 group-hover:shadow-glow-brand">
+      <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-card text-sm font-bold text-brand shadow-sm transition-all duration-200 group-hover:border-brand/30 group-hover:shadow-glow-brand">
         {number}
       </span>
       <h4 className="text-sm font-semibold text-text">{label}</h4>
