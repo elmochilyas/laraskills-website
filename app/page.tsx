@@ -19,12 +19,11 @@ import supportedTools from "@/data/supported-tools.json";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Home() {
-  /* TODO: verify `npx laraskills@beta` is the final npm package name before production launch */
   const [copied, setCopied] = useState(false);
 
   const copyCommand = async () => {
     try {
-      await navigator.clipboard.writeText("npx laraskills@beta install");
+      await navigator.clipboard.writeText("npm install --save-dev laraskills");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -109,9 +108,8 @@ export default function Home() {
     },
   ];
 
-  /* TODO: verify `npx laraskills` (and @beta tag) is the final npm package name and CLI entry before production launch */
   const cliCommands = [
-    { command: "npx laraskills@beta install", label: "Install Laraskills" },
+    { command: "npm install --save-dev laraskills", label: "Install Laraskills" },
     { command: 'npx laraskills retrieve "Optimize an N+1 query" --mode compact', label: "Retrieve context" },
     { command: 'npx laraskills search "Policies versus Gates"', label: "Search knowledge" },
     { command: "npx laraskills get security-identity-engineering/authentication/sanctum-spa-authentication", label: "Inspect knowledge unit" },
@@ -143,7 +141,7 @@ export default function Home() {
         }}
       />
       {/* Hero Section */}
-      <Section className="relative overflow-hidden">
+      <section className="relative flex min-h-[calc(100dvh-3.5rem)] flex-col justify-center overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[800px] opacity-20"
@@ -154,7 +152,7 @@ export default function Home() {
         />
 
         <PageContainer>
-          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 min-h-[calc(100dvh-3.5rem)] items-center py-16 md:py-24">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
               <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-brand">
                 Laraskills
@@ -195,7 +193,7 @@ export default function Home() {
                 </div>
                 <pre className="overflow-x-auto text-sm">
                   <code className="text-text-muted">
-                    <span className="text-green-400">$</span> npx laraskills@beta install
+                    <span className="text-green-400">$</span> npm install --save-dev laraskills
                   </code>
                 </pre>
                 <button
@@ -222,7 +220,7 @@ export default function Home() {
             </div>
           </div>
         </PageContainer>
-      </Section>
+      </section>
 
       {/* Metrics Section */}
       <Section variant="dark">
@@ -470,7 +468,7 @@ export default function Home() {
               </div>
               <pre className="overflow-x-auto text-sm">
                 <code className="text-text-muted">
-                  <span className="text-green-400">$</span> npx laraskills@beta install
+                  <span className="text-green-400">$</span> npm install --save-dev laraskills
                 </code>
               </pre>
             </Card>
