@@ -52,7 +52,7 @@ export default function OpenCodeSetupPage() {
         Add the following to your OpenCode MCP configuration:
       </p>
       <div className="mt-4 max-w-xl">
-        <div className="rounded-xl border border-border bg-surface p-4 sm:p-5">
+        <div className="rounded-xl border border-border bg-bg p-4 sm:p-5">
           <pre className="text-sm text-text-muted whitespace-pre-wrap leading-relaxed">
 {`{
   "mcpServers": {

@@ -5,11 +5,11 @@ type MetricsCardProps = {
 
 export default function MetricsCard({ value, label }: MetricsCardProps) {
   return (
-    <div className="flex flex-col items-center rounded-xl border border-border bg-surface p-6 text-center">
-      <span className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">
+    <div className="card flex flex-col items-center p-6 text-center group">
+      <span className="font-display text-3xl font-semibold tracking-tight text-brand sm:text-4xl transition-transform duration-300 group-hover:scale-105">
         {value}
       </span>
-      <span className="mt-1 text-sm text-text-muted">{label}</span>
+      <span className="mt-1.5 text-sm text-text-muted leading-snug">{label}</span>
     </div>
   );
 }

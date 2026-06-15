@@ -1,4 +1,4 @@
-type SectionVariant = "default" | "dark";
+type SectionVariant = "surface" | "alt" | "elevated";
 
 type SectionProps = {
   variant?: SectionVariant;
@@ -7,8 +7,14 @@ type SectionProps = {
   className?: string;
 };
 
+const variantClasses: Record<SectionVariant, string> = {
+  surface: "section-surface",
+  alt: "section-alt",
+  elevated: "section-elevated",
+};
+
 export default function Section({
-  variant = "default",
+  variant = "surface",
   id,
   children,
   className = "",
@@ -16,7 +22,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 ${variant === "dark" ? "bg-surface-alt" : ""} ${className}`}
+      className={`py-16 md:py-24 ${variantClasses[variant]} ${className}`}
     >
       {children}
     </section>

@@ -34,7 +34,7 @@ function SidebarNav({ onLinkClick }: { onLinkClick?: () => void }) {
             className={`rounded-lg px-3 py-2 text-sm transition-colors ${
               isActive
                 ? "bg-brand/10 text-brand font-medium"
-                : "text-text-muted hover:text-text hover:bg-surface"
+                : "text-text-muted hover:text-text hover:bg-bg"
             }`}
           >
             {link.label}
@@ -57,7 +57,7 @@ export default function DocsSidebar() {
       {/* Mobile open button */}
       <button
         onClick={openDrawer}
-        className="flex lg:hidden items-center gap-2 px-4 py-3 text-sm text-text-muted hover:text-text transition-colors border-b border-border bg-surface w-full"
+        className="flex lg:hidden items-center gap-2 px-4 py-3 text-sm text-text-muted hover:text-text transition-colors border-b border-border bg-bg w-full"
         aria-label="Open docs navigation"
       >
         <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -77,7 +77,7 @@ export default function DocsSidebar() {
 
       {/* Mobile drawer */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-72 bg-surface-alt border-r border-border transform transition-transform duration-200 ease-in-out lg:hidden ${
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-bg-alt border-r border-border transform transition-transform duration-200 ease-in-out lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -85,7 +85,7 @@ export default function DocsSidebar() {
           <span className="text-sm font-semibold text-text">Docs</span>
           <button
             onClick={close}
-            className="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-text-muted hover:text-text hover:bg-surface transition-colors"
+            className="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-text-muted hover:text-text hover:bg-bg transition-colors"
             aria-label="Close navigation"
           >
             <svg className="h-5 w-5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -99,7 +99,7 @@ export default function DocsSidebar() {
 
       {/* Desktop sidebar */}
       <aside
-        className={`hidden lg:block shrink-0 border-r border-border bg-surface-alt transition-all duration-200 ${
+        className={`hidden lg:block shrink-0 border-r border-border bg-bg-alt transition-all duration-200 ${
           collapsed ? "w-12" : "w-56"
         }`}
       >
@@ -107,7 +107,7 @@ export default function DocsSidebar() {
           <div className="flex items-center justify-end border-b border-border h-10 px-2">
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="inline-flex items-center justify-center rounded-md p-1.5 text-text-muted hover:text-text hover:bg-surface transition-colors"
+              className="inline-flex items-center justify-center rounded-md p-1.5 text-text-muted hover:text-text hover:bg-bg transition-colors"
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
