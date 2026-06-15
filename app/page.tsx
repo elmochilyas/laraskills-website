@@ -5,7 +5,7 @@ import PageContainer from "@/components/PageContainer";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
-import MetricsCard from "@/components/MetricsCard";
+import EcosystemSection from "@/components/EcosystemSection";
 import ComparisonTable from "@/components/ComparisonTable";
 import ArchitectureLayerCard from "@/components/ArchitectureLayerCard";
 import CliCommandCard from "@/components/CliCommandCard";
@@ -14,7 +14,6 @@ import IntegrationCloudItem from "@/components/IntegrationCloudItem";
 import IntegrationGroupCard from "@/components/IntegrationGroupCard";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import HeroSection from "@/components/HeroSection";
-import metricsData from "@/data/homepage-metrics.json";
 import supportedTools from "@/data/supported-tools.json";
 import { siteConfig } from "@/lib/site-config";
 export default function Home() {
@@ -2106,37 +2105,7 @@ export default function Home() {
                     ]
                 })
             }),
-            /*#__PURE__*/ _jsx(Section, {
-                variant: "alt",
-                children: /*#__PURE__*/ _jsxs(PageContainer, {
-                    children: [
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-12 text-center",
-                            children: [
-                                /*#__PURE__*/ _jsx("span", {
-                                    className: "section-eyebrow",
-                                    children: "Scale"
-                                }),
-                                /*#__PURE__*/ _jsx("h2", {
-                                    className: "section-title",
-                                    children: "By the numbers"
-                                }),
-                                /*#__PURE__*/ _jsx("p", {
-                                    className: "section-lead mx-auto",
-                                    children: "The Laraskills knowledge system today"
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4",
-                            children: metricsData.metrics.map((metric, index)=>/*#__PURE__*/ _jsx(MetricsCard, {
-                                    value: metric.value,
-                                    label: metric.label
-                                }, index))
-                        })
-                    ]
-                })
-            }),
+            /*#__PURE__*/ _jsx(EcosystemSection, {}),
             /*#__PURE__*/ _jsx(Section, {
                 variant: "surface",
                 children: /*#__PURE__*/ _jsxs(PageContainer, {

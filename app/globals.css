@@ -52,6 +52,7 @@
 
 html {
   min-height: 100dvh;
+  --navbar-height: 56px;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -124,6 +125,209 @@ body {
 .card-featured:hover {
   border-color: rgba(230, 57, 70, 0.4);
   box-shadow: var(--shadow-glow-brand-strong);
+}
+
+/* â”€â”€ Ecosystem dashboard â”€â”€ */
+
+.eco-spine {
+  position: absolute;
+  left: calc(5 / 12 * 100%);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(230, 57, 70, 0.3) 0%,
+    rgba(230, 57, 70, 0.07) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.eco-node-dot {
+  position: absolute;
+  left: -9px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.3);
+}
+
+.eco-node-dot-accent {
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.3);
+}
+
+.eco-group-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-border);
+  border-radius: 0.625rem;
+  padding: 1rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eco-group-card:hover {
+  border-color: var(--color-border-light);
+  border-left-color: var(--color-brand);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.eco-group-card-accent:hover {
+  border-left-color: var(--color-accent);
+}
+
+.eco-group-card-accent:hover .eco-group-icon {
+  color: var(--color-accent);
+}
+
+.eco-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  background-color: rgba(230, 57, 70, 0.08);
+  padding: 0.25rem 0.75rem;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: rgba(230, 57, 70, 0.8);
+}
+
+.eco-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(230, 57, 70, 0.6);
+}
+
+.eco-hero-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -5rem;
+  border-radius: 999px;
+  opacity: 0;
+  animation: breathe-radial 5s ease-in-out infinite;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(230, 57, 70, 0.1) 0%,
+    transparent 60%
+  );
+}
+
+@keyframes eco-spine-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* â”€â”€ Scroll storytelling â”€â”€ */
+
+.eco-scroll-wrapper {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .eco-scroll-wrapper {
+    min-height: 330vh;
+  }
+}
+
+.eco-sticky-container {
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  z-index: 10;
+}
+
+.eco-sticky-inner {
+  width: 100%;
+}
+
+.eco-step-group-enter {
+  animation: eco-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes eco-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.eco-spacer {
+  height: 120vh;
+  pointer-events: none;
+}
+
+.eco-step-group {
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-step-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.eco-step-hidden {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  filter: blur(3px);
+}
+
+.eco-step-card {
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-step-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.eco-step-card-hidden {
+  opacity: 0;
+  transform: translateY(1rem);
+  filter: blur(2px);
+}
+
+.eco-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.eco-progress-dot-active {
+  background-color: var(--color-brand);
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+  transform: scale(1.15);
+}
+
+.eco-progress-dot-active-accent {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+  transform: scale(1.15);
+}
+
+.eco-progress-dot-inactive {
+  background-color: var(--color-border);
 }
 
 /* â”€â”€ Glass utilities â”€â”€ */
@@ -230,6 +434,11 @@ body {
   0%, 100% { transform: translateY(0) translateX(0); }
   33% { transform: translateY(-6px) translateX(3px); }
   66% { transform: translateY(-3px) translateX(-3px); }
+}
+
+@keyframes breathe-radial {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
 }
 
 @keyframes hero-light-drift {
@@ -414,6 +623,23 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+.animate-breathe-radial {
+  animation: breathe-radial 5s ease-in-out infinite;
+}
+
+.sparkline {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.08;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card:hover .sparkline {
+  opacity: 0.25;
+}
+
 /* â”€â”€ Reduced motion â”€â”€ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -421,6 +647,13 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .eco-step-hidden,
+  .eco-step-card-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
