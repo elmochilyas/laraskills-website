@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LaraSkillsLogo } from "@/components/LaraSkillsLogo";
+import { AnimatedHeaderLogo } from "@/components/AnimatedHeaderLogo";
 
 const navLinks = [
   { label: "Docs", href: "/docs" },
@@ -153,7 +153,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -185,14 +185,16 @@ export default function Header() {
         <div className="mx-auto -mt-[3px] h-[6px] w-24 rounded-full bg-brand/20 blur-md" />
       </div>
 
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto flex max-w-[1200px] items-center justify-between px-4 transition-all duration-500 sm:px-6 lg:px-8 ${
+        scrolled ? "h-14" : "h-16"
+      }`}>
         {/* ── logo ── */}
         <Link
           href="/"
           aria-label="LaraSkills home"
           className="group relative flex items-center transition-opacity duration-200 hover:opacity-80"
         >
-          <LaraSkillsLogo className="h-9 w-auto md:h-11" />
+          <AnimatedHeaderLogo />
         </Link>
 
         {/* ── desktop nav ── */}
