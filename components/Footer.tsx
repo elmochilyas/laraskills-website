@@ -2,10 +2,11 @@ import Link from "next/link";
 
 const footerLinks = [
   { label: "Docs", href: "/docs" },
-  { label: "Glossary", href: "/glossary" },
-  { label: "GitHub", href: "https://github.com/elmochilyas/laraskills", external: true },
+  { label: "Skills", href: "/skills" },
   { label: "MCP", href: "/mcp" },
+  { label: "Glossary", href: "/glossary" },
   { label: "Research", href: "/research" },
+  { label: "GitHub", href: "https://github.com/elmochilyas/laraskills", external: true },
 ];
 
 export default function Footer() {
