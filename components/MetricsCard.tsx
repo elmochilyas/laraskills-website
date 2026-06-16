@@ -67,6 +67,7 @@ export default function MetricsCard({
   const icon = metricId ? METRIC_ICONS[metricId] : null;
   const [count, setCount] = useState(featured || compact ? 0 : target);
   const isVisible = entered || forceVisible;
+  const displayCount = forceVisible ? target : count;
 
   useEffect(() => {
     const el = ref.current;
@@ -86,7 +87,7 @@ export default function MetricsCard({
   }, [entered]);
 
   useEffect(() => {
-    if ((!entered && !forceVisible) || (!featured && !compact)) return;
+    if (forceVisible || !entered || (!featured && !compact)) return;
 
     let frame = 0;
     const total = featured ? 55 : 40;
@@ -131,7 +132,7 @@ export default function MetricsCard({
           )}
           <div className="min-w-0">
             <span className="font-display font-bold text-white leading-none text-xl sm:text-2xl block">
-              {formatDisplay(count)}{suffix}
+              {formatDisplay(displayCount)}{suffix}
             </span>
             <span className="text-text-muted text-sm font-medium leading-snug block mt-0.5">
               {label}
@@ -190,7 +191,7 @@ export default function MetricsCard({
             : "text-2xl mb-1"
         }`}
       >
-        {featured ? `${formatDisplay(count)}${suffix}` : value}
+        {featured ? `${formatDisplay(displayCount)}${suffix}` : value}
       </span>
 
       <span
