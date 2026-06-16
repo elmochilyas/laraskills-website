@@ -13,6 +13,11 @@ Laraskills is a Laravel AI engineering knowledge system. It gives AI coding agen
 - [Integrations](/docs/integrations): Supported AI coding agents, IDEs, and editors.
 - [Skills](/docs/skills): Skill workflows for Core Engineering, Testing, Security, Data, API, and DevOps.
 
+## Public Pages
+
+- [Skills Overview](/skills): Public landing page explaining Laraskills skills and categories.
+- [MCP Overview](/mcp): Public landing page explaining Laraskills MCP support and tools.
+
 ## Reference
 
 - [Glossary](/glossary): Key terms and concepts in the Laraskills knowledge system.

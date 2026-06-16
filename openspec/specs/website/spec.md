@@ -112,7 +112,7 @@ The system SHALL provide a `Header` component that displays the Laraskills brand
 - **THEN** the "Docs" navigation link SHALL be highlighted as active
 
 ### Requirement: Footer displays links and description
-The system SHALL provide a `Footer` component that displays a short Laraskills description and links to Docs, Glossary, GitHub, MCP, and Research.
+The system SHALL provide a `Footer` component that displays a short Laraskills description and links to Docs, Skills, Glossary, GitHub, MCP, and Research.
 
 #### Scenario: Footer renders with description
 - **WHEN** the `Footer` is rendered
@@ -120,7 +120,7 @@ The system SHALL provide a `Footer` component that displays a short Laraskills d
 
 #### Scenario: Footer renders with links
 - **WHEN** the `Footer` is rendered
-- **THEN** it SHALL display links to Docs (`/docs`), Glossary (`/glossary`), GitHub (external), MCP (`/mcp`), and Research (`/research`)
+- **THEN** it SHALL display links to Docs (`/docs`), Skills (`/skills`), Glossary (`/glossary`), GitHub (external), MCP (`/mcp`), and Research (`/research`)
 
 ### Requirement: Layout includes Header and Footer
 The system SHALL integrate the `Header` and `Footer` components into the root layout (`app/layout.tsx`) so they appear on every page.
@@ -156,9 +156,33 @@ The system SHALL define default metadata in the root layout including title, des
 The system SHALL provide per-page `metadata` exports for each public route, extending the root layout defaults with page-specific title and description.
 
 #### Scenario: Metadata is unique per route
-- **WHEN** a user navigates between any two public routes
+- **WHEN** a user navigates between any two public routes including `/skills` and `/mcp`
 - **THEN** each page SHALL have a different `<title>` and `<meta name="description">`
 
 #### Scenario: Metadata uses Next.js metadata API
 - **WHEN** a `page.tsx` is rendered
 - **THEN** the metadata SHALL be exported as a `metadata` object or `generateMetadata` function following Next.js App Router conventions
+
+### Requirement: Sitemap includes /skills and /mcp
+
+The generated sitemap SHALL include entries for the `/skills` and `/mcp` routes.
+
+#### Scenario: Sitemap contains skills and mcp entries
+- **WHEN** `/sitemap.xml` is fetched
+- **THEN** it SHALL contain `<url>` entries for `/skills` and `/mcp`
+
+#### Scenario: Sitemap entries have appropriate priority
+- **WHEN** the sitemap is inspected
+- **THEN** `/skills` SHALL have priority 0.8 and `/mcp` SHALL have priority 0.8
+
+### Requirement: llms.txt references new pages
+
+The `public/llms.txt` SHALL include entries for Skills and MCP public landing pages.
+
+#### Scenario: llms.txt has skills reference
+- **WHEN** `llms.txt` is read
+- **THEN** it SHALL include a reference to the Skills page at `/skills`
+
+#### Scenario: llms.txt has mcp reference
+- **WHEN** `llms.txt` is read
+- **THEN** it SHALL include a reference to the MCP page at `/mcp`

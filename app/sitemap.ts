@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/docs/opencode-setup", changefreq: "monthly" as const, priority: 0.7 },
     { path: "/docs/integrations", changefreq: "monthly" as const, priority: 0.7 },
     { path: "/docs/skills", changefreq: "monthly" as const, priority: 0.7 },
+    { path: "/skills", changefreq: "monthly" as const, priority: 0.8 },
+    { path: "/mcp", changefreq: "monthly" as const, priority: 0.8 },
     { path: "/glossary", changefreq: "monthly" as const, priority: 0.6 },
     { path: "/research", changefreq: "monthly" as const, priority: 0.6 },
   ];
