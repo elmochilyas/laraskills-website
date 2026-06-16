@@ -6,7 +6,7 @@ import Section from "@/components/Section";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import EcosystemSection from "@/components/EcosystemSection";
-import ComparisonTable from "@/components/ComparisonTable";
+import AgentUpgradeSection from "@/components/AgentUpgradeSection";
 import ArchitectureLayerCard from "@/components/ArchitectureLayerCard";
 import CliCommandCard from "@/components/CliCommandCard";
 import McpToolCard from "@/components/McpToolCard";
@@ -17,42 +17,6 @@ import HeroSection from "@/components/HeroSection";
 import supportedTools from "@/data/supported-tools.json";
 import { siteConfig } from "@/lib/site-config";
 export default function Home() {
-    const comparisonBefore = [
-        {
-            label: "Guesses Laravel conventions",
-            description: "No knowledge of Laravel-specific patterns or conventions"
-        },
-        {
-            label: "Relies on broad framework memory",
-            description: "Applies generic web framework assumptions"
-        },
-        {
-            label: "Misses architecture decisions",
-            description: "Ignores project structure and Laravel conventions"
-        },
-        {
-            label: "Needs long manual prompts",
-            description: "Requires extensive instructions for each task"
-        }
-    ];
-    const comparisonAfter = [
-        {
-            label: "Loads Laravel-specific guidance",
-            description: "Retrieves conventions, patterns, and best practices automatically"
-        },
-        {
-            label: "Uses focused retrieval",
-            description: "Queries only the most relevant Laravel knowledge"
-        },
-        {
-            label: "Follows skills, rules, and checklists",
-            description: "Applies structured rules and decision trees"
-        },
-        {
-            label: "Works with MCP-compatible tools",
-            description: "Integrates with Laravel-first editor tools"
-        }
-    ];
     const architectureLayers = [
         {
             number: 1,
@@ -2114,51 +2078,7 @@ export default function Home() {
                 })
             }),
             /*#__PURE__*/ _jsx(EcosystemSection, {}),
-            /*#__PURE__*/ _jsx(Section, {
-                variant: "surface",
-                children: /*#__PURE__*/ _jsxs(PageContainer, {
-                    children: [
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-10 text-center md:mb-14",
-                            children: [
-                                /*#__PURE__*/ _jsx("span", {
-                                    className: "section-eyebrow",
-                                    children: "Before & after"
-                                }),
-                                /*#__PURE__*/ _jsxs("h2", {
-                                    className: "section-title flex flex-wrap items-center justify-center gap-x-3 gap-y-1",
-                                    children: [
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "text-text-muted",
-                                            children: "Generic coding agent"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "text-sm font-normal text-text-dim",
-                                            children: "->"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "text-brand",
-                                            children: "Agent with LaraSkills"
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ _jsx("p", {
-                                    className: "section-lead mx-auto",
-                                    children: "Without LaraSkills, the agent guesses. With LaraSkills, it becomes Laravel-aware."
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _jsx(ComparisonTable, {
-                            beforeTitle: "Generic coding agent",
-                            beforeSubtitle: "Works from broad memory and guesses project context.",
-                            beforeItems: comparisonBefore,
-                            afterTitle: "Agent with LaraSkills",
-                            afterSubtitle: "Uses focused Laravel retrieval before writing code.",
-                            afterItems: comparisonAfter
-                        })
-                    ]
-                })
-            }),
+            /*#__PURE__*/ _jsx(AgentUpgradeSection, {}),
             /*#__PURE__*/ _jsx(Section, {
                 variant: "alt",
                 children: /*#__PURE__*/ _jsxs(PageContainer, {
