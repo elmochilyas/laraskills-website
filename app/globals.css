@@ -52,6 +52,7 @@
 
 html {
   min-height: 100dvh;
+  --navbar-height: 56px;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -126,7 +127,552 @@ body {
   box-shadow: var(--shadow-glow-brand-strong);
 }
 
+/* â”€â”€ Ecosystem dashboard â”€â”€ */
+
+.eco-spine {
+  position: absolute;
+  left: calc(5 / 12 * 100%);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(230, 57, 70, 0.3) 0%,
+    rgba(230, 57, 70, 0.07) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.eco-node-dot {
+  position: absolute;
+  left: -9px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.3);
+}
+
+.eco-node-dot-accent {
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.3);
+}
+
+.eco-group-card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-border);
+  border-radius: 0.625rem;
+  padding: 1rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.eco-group-card:hover {
+  border-color: var(--color-border-light);
+  border-left-color: var(--color-brand);
+  transform: translateY(-1px);
+}
+
+.eco-group-card-accent:hover {
+  border-left-color: var(--color-accent);
+}
+
+.eco-group-card-accent:hover .eco-group-icon {
+  color: var(--color-accent);
+}
+
+.eco-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  background-color: rgba(230, 57, 70, 0.06);
+  padding: 0.25rem 0.75rem;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: rgba(230, 57, 70, 0.75);
+}
+
+.eco-hero-glow {
+  display: none;
+}
+
+@keyframes eco-spine-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
 /* â”€â”€ Glass utilities â”€â”€ */
+
+/* Ecosystem dashboard polish */
+
+.eco-scroll-wrapper {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 26, 0.96), rgba(11, 11, 15, 0.98) 52%, rgba(18, 18, 26, 0.96)),
+    var(--color-bg-alt);
+}
+
+.eco-atmosphere {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 50rem 24rem at 72% 16%, rgba(230, 57, 70, 0.06), transparent 65%),
+    radial-gradient(ellipse 36rem 20rem at 15% 70%, rgba(45, 212, 191, 0.025), transparent 65%);
+}
+
+.eco-scroll-wrapper > :not(.eco-atmosphere):not(.eco-sticky-container) {
+  position: relative;
+  z-index: 1;
+}
+
+.eco-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11, 11, 15, 0.6), transparent 30%, transparent 70%, rgba(11, 11, 15, 0.6));
+}
+
+@media (min-width: 1024px) {
+  .eco-scroll-wrapper {
+    min-height: 270svh;
+  }
+}
+
+.eco-sticky-container {
+  position: sticky;
+  top: var(--navbar-height);
+  height: calc(100svh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  z-index: 10;
+}
+
+.eco-sticky-inner {
+  width: 100%;
+}
+
+.eco-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.5rem;
+  background: rgba(13, 13, 19, 0.88);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.4);
+}
+
+.eco-panel-sheen {
+  display: none;
+}
+
+.eco-section-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: clamp(1.5rem, 2.6vw, 2.15rem);
+}
+
+.eco-dashboard-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(1.5rem, 2rem) minmax(0, 1.1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.15rem);
+  align-items: center;
+}
+
+.eco-feature-card {
+  position: relative;
+  min-height: 22.5rem;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(13, 13, 19, 0.9);
+  padding: clamp(1.6rem, 3vw, 2.35rem);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35);
+  transition: border-color 320ms ease, box-shadow 320ms ease, transform 320ms ease;
+}
+
+.eco-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.6), transparent);
+  border-radius: 0 0 2px 2px;
+}
+
+.eco-feature-card:hover {
+  border-color: rgba(230, 57, 70, 0.2);
+  transform: translateY(-2px);
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.4);
+}
+
+.eco-feature-grid,
+.eco-feature-orbit,
+.eco-feature-cap {
+  display: none;
+}
+
+.eco-feature-content {
+  position: relative;
+  z-index: 1;
+}
+
+.eco-feature-number {
+  font-size: clamp(4.8rem, 7.2vw, 7rem);
+}
+
+.eco-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  background: rgba(230, 57, 70, 0.06);
+  padding: 0.32rem 0.78rem;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: rgba(255, 139, 148, 0.85);
+}
+
+.eco-badge::before {
+  content: none;
+}
+
+.eco-hero-glow {
+  display: none;
+}
+
+.eco-story-rail {
+  --eco-active: 230 57 70;
+  position: relative;
+  align-self: stretch;
+  min-height: 22.5rem;
+}
+
+.eco-story-rail-step-2 {
+  --eco-active: 45 212 191;
+}
+
+.eco-rail-line {
+  position: absolute;
+  pointer-events: none;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgb(var(--eco-active) / 0.3), transparent);
+  transform: translateX(-50%);
+}
+
+.eco-rail-branch,
+.eco-rail-node {
+  display: none;
+}
+
+.eco-story-column {
+  min-width: 0;
+}
+
+.eco-story-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 20.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.25rem;
+  background: rgba(13, 13, 19, 0.7);
+  padding: clamp(1rem, 2vw, 1.25rem);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+.eco-story-card::before {
+  display: none;
+}
+
+.eco-step-group {
+  --eco-step-accent: 230 57 70;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-step-group-accent {
+  --eco-step-accent: 45 212 191;
+}
+
+.eco-step-heading,
+.eco-mobile-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.eco-step-marker {
+  width: 0.44rem;
+  height: 0.44rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgb(var(--eco-step-accent) / 0.8);
+}
+
+.eco-step-heading-line {
+  height: 1px;
+  flex: 1 1 auto;
+  background: linear-gradient(90deg, rgb(var(--eco-step-accent) / 0.34), rgba(255, 255, 255, 0.055), transparent);
+}
+
+.eco-step-grid {
+  position: relative;
+}
+
+.eco-step-grid-glow {
+  display: none;
+}
+
+.eco-step-group-enter {
+  animation: eco-fade-in 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes eco-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.eco-step-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.eco-step-hidden {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  filter: blur(3px);
+}
+
+.eco-step-card {
+  position: relative;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-step-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.eco-step-card-hidden {
+  opacity: 0;
+  transform: translateY(1rem);
+  filter: blur(2px);
+}
+
+.eco-metric-card {
+  min-height: 10.9rem;
+  overflow: hidden;
+  isolation: isolate;
+  border-color: rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  background: rgba(13, 13, 19, 0.9);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.eco-metric-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 1rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.3), transparent);
+}
+
+.eco-metric-card::after {
+  display: none;
+}
+
+.eco-metric-card:hover {
+  border-color: rgba(230, 57, 70, 0.18);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.eco-metric-card svg {
+  color: rgba(230, 57, 70, 0.58);
+}
+
+.eco-metric-card-accent {
+  background: rgba(13, 13, 19, 0.9);
+}
+
+.eco-metric-card-accent::before {
+  background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.25), transparent);
+}
+
+.eco-metric-card-accent:hover {
+  border-color: rgba(45, 212, 191, 0.16);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.eco-metric-card-accent svg {
+  color: rgba(45, 212, 191, 0.58);
+}
+
+.eco-progress-nav {
+  position: absolute;
+  right: clamp(1rem, 2.5vw, 2.25rem);
+  top: 50%;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  background: rgba(13, 13, 19, 0.5);
+  padding: 0.85rem 0.48rem;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.eco-progress-track {
+  position: absolute;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+}
+
+.eco-progress-dot {
+  position: relative;
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.5s ease, transform 0.5s ease, border-color 0.5s ease;
+}
+
+.eco-progress-dot-active {
+  border-color: rgba(230, 57, 70, 0.6);
+  background-color: var(--color-brand);
+  transform: scale(1.15);
+}
+
+.eco-progress-dot-active-accent {
+  border-color: rgba(45, 212, 191, 0.5);
+  background-color: var(--color-accent);
+  transform: scale(1.15);
+}
+
+.eco-progress-dot-inactive {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.eco-mobile-heading {
+  margin-bottom: 1.35rem;
+}
+
+.eco-feature-card-mobile {
+  min-height: auto;
+  padding: 1.5rem;
+}
+
+.eco-mobile-groups {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.eco-mobile-group {
+  --eco-step-accent: 230 57 70;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.eco-mobile-group::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 1.65rem;
+  bottom: -0.8rem;
+  width: 1px;
+  background: linear-gradient(to bottom, rgb(var(--eco-step-accent) / 0.3), transparent);
+}
+
+.eco-mobile-group:last-child::before {
+  content: none;
+}
+
+@media (max-width: 1023px) {
+  .eco-scroll-wrapper {
+    min-height: auto;
+  }
+
+  .eco-feature-number {
+    font-size: clamp(4rem, 18vw, 5.4rem);
+  }
+
+  .eco-metric-card {
+    min-height: auto;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 790px) {
+  .eco-panel {
+    padding: 1.25rem;
+  }
+
+  .eco-section-heading {
+    margin-bottom: 1.1rem;
+  }
+
+  .eco-feature-card,
+  .eco-story-rail {
+    min-height: 18.7rem;
+  }
+
+  .eco-story-card {
+    min-height: 18.2rem;
+  }
+
+  .eco-metric-card {
+    min-height: 9.8rem;
+  }
+
+  .eco-feature-number {
+    font-size: clamp(4.3rem, 6.5vw, 5.8rem);
+  }
+}
 
 .glass {
   background-color: var(--color-glass-bg);
@@ -230,6 +776,11 @@ body {
   0%, 100% { transform: translateY(0) translateX(0); }
   33% { transform: translateY(-6px) translateX(3px); }
   66% { transform: translateY(-3px) translateX(-3px); }
+}
+
+@keyframes breathe-radial {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
 }
 
 @keyframes hero-light-drift {
@@ -414,6 +965,23 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+.animate-breathe-radial {
+  animation: breathe-radial 5s ease-in-out infinite;
+}
+
+.sparkline {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.08;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card:hover .sparkline {
+  opacity: 0.25;
+}
+
 /* â”€â”€ Reduced motion â”€â”€ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -421,6 +989,13 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .eco-step-hidden,
+  .eco-step-card-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 

@@ -1,12 +1,12 @@
 {
   "_note": "Static placeholder. Replace with generated synced data when the stats sync script is in place.",
   "metrics": [
-    { "value": "12", "label": "Laravel skills" },
-    { "value": "41", "label": "Always-follow rules" },
-    { "value": "12", "label": "Agent definitions" },
-    { "value": "21", "label": "Engineering domains" },
-    { "value": "2,321", "label": "Knowledge units" },
-    { "value": "5", "label": "Read-only MCP tools" },
-    { "value": "12", "label": "Supported coding harnesses" }
+    { "value": "12", "label": "Laravel skills", "id": "skills" },
+    { "value": "41", "label": "Always-follow rules", "id": "rules" },
+    { "value": "12", "label": "Agent definitions", "id": "agents" },
+    { "value": "21", "label": "Engineering domains", "id": "domains" },
+    { "value": "2,321", "label": "Knowledge units", "id": "knowledge-units" },
+    { "value": "5", "label": "Read-only MCP tools", "id": "mcp" },
+    { "value": "12", "label": "Supported coding harnesses", "id": "harnesses" }
   ]
 }
