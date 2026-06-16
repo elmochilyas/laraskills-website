@@ -19,30 +19,38 @@ import { siteConfig } from "@/lib/site-config";
 export default function Home() {
     const comparisonBefore = [
         {
-            label: "Guesses Laravel conventions"
+            label: "Guesses Laravel conventions",
+            description: "No knowledge of Laravel-specific patterns or conventions"
         },
         {
-            label: "Relies on broad framework memory"
+            label: "Relies on broad framework memory",
+            description: "Applies generic web framework assumptions"
         },
         {
-            label: "Misses architecture decisions"
+            label: "Misses architecture decisions",
+            description: "Ignores project structure and Laravel conventions"
         },
         {
-            label: "Needs long manual prompts"
+            label: "Needs long manual prompts",
+            description: "Requires extensive instructions for each task"
         }
     ];
     const comparisonAfter = [
         {
-            label: "Loads Laravel-specific guidance"
+            label: "Loads Laravel-specific guidance",
+            description: "Retrieves conventions, patterns, and best practices automatically"
         },
         {
-            label: "Uses focused retrieval"
+            label: "Uses focused retrieval",
+            description: "Queries only the most relevant Laravel knowledge"
         },
         {
-            label: "Follows skills, rules, and checklists"
+            label: "Follows skills, rules, and checklists",
+            description: "Applies structured rules and decision trees"
         },
         {
-            label: "Works with MCP-compatible tools"
+            label: "Works with MCP-compatible tools",
+            description: "Integrates with Laravel-first editor tools"
         }
     ];
     const architectureLayers = [
@@ -2111,26 +2119,41 @@ export default function Home() {
                 children: /*#__PURE__*/ _jsxs(PageContainer, {
                     children: [
                         /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-12 text-center",
+                            className: "mb-10 text-center md:mb-14",
                             children: [
                                 /*#__PURE__*/ _jsx("span", {
                                     className: "section-eyebrow",
                                     children: "Before & after"
                                 }),
-                                /*#__PURE__*/ _jsx("h2", {
-                                    className: "section-title",
-                                    children: "Generic coding agent vs Laraskills"
+                                /*#__PURE__*/ _jsxs("h2", {
+                                    className: "section-title flex flex-wrap items-center justify-center gap-x-3 gap-y-1",
+                                    children: [
+                                        /*#__PURE__*/ _jsx("span", {
+                                            className: "text-text-muted",
+                                            children: "Generic coding agent"
+                                        }),
+                                        /*#__PURE__*/ _jsx("span", {
+                                            className: "text-sm font-normal text-text-dim",
+                                            children: "->"
+                                        }),
+                                        /*#__PURE__*/ _jsx("span", {
+                                            className: "text-brand",
+                                            children: "Agent with LaraSkills"
+                                        })
+                                    ]
                                 }),
                                 /*#__PURE__*/ _jsx("p", {
                                     className: "section-lead mx-auto",
-                                    children: "Why Laravel developers get better results with Laraskills"
+                                    children: "Without LaraSkills, the agent guesses. With LaraSkills, it becomes Laravel-aware."
                                 })
                             ]
                         }),
                         /*#__PURE__*/ _jsx(ComparisonTable, {
                             beforeTitle: "Generic coding agent",
+                            beforeSubtitle: "Works from broad memory and guesses project context.",
                             beforeItems: comparisonBefore,
-                            afterTitle: "Agent with Laraskills",
+                            afterTitle: "Agent with LaraSkills",
+                            afterSubtitle: "Uses focused Laravel retrieval before writing code.",
                             afterItems: comparisonAfter
                         })
                     ]

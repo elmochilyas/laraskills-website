@@ -52,7 +52,7 @@
 
 html {
   min-height: 100dvh;
-  --navbar-height: 56px;
+  --navbar-height: 64px;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -814,7 +814,7 @@ body {
 }
 
 .hero-shell {
-  min-height: calc(100svh - 57px);
+  min-height: calc(100svh - var(--navbar-height));
   display: flex;
   align-items: center;
   padding-block: clamp(2.5rem, 6vh, 4.5rem);
