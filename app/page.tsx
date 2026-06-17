@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import EcosystemSection from "@/components/EcosystemSection";
 import AgentUpgradeSection from "@/components/AgentUpgradeSection";
-import ArchitectureLayerCard from "@/components/ArchitectureLayerCard";
+import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import CliCommandCard from "@/components/CliCommandCard";
 import McpToolCard from "@/components/McpToolCard";
 import IntegrationCloudItem from "@/components/IntegrationCloudItem";
@@ -21,6 +21,7 @@ export default function Home() {
         {
             number: 1,
             title: "Operating layer",
+            role: "Defines how agents should behave.",
             items: [
                 "Skills, rules, agents",
                 "Command references",
@@ -30,6 +31,7 @@ export default function Home() {
         {
             number: 2,
             title: "Intelligence layer",
+            role: "Organizes Laravel knowledge into context.",
             items: [
                 "Domains, knowledge units",
                 "Indexes, routing maps",
@@ -39,6 +41,7 @@ export default function Home() {
         {
             number: 3,
             title: "Retrieval layer",
+            role: "Delivers the right guidance to coding tools.",
             items: [
                 "CLI retrieval, search",
                 "Inspect, graph context",
@@ -2100,13 +2103,8 @@ export default function Home() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "grid grid-cols-1 gap-6 lg:grid-cols-3",
-                            children: architectureLayers.map((layer)=>/*#__PURE__*/ _jsx(ArchitectureLayerCard, {
-                                    number: layer.number,
-                                    title: layer.title,
-                                    items: layer.items
-                                }, layer.number))
+                        /*#__PURE__*/ _jsx(ArchitectureDiagram, {
+                            layers: architectureLayers
                         })
                     ]
                 })

@@ -1,38 +1,57 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useSyncExternalStore } from "react";
 
 type AnimatedHeaderLogoProps = {
   red?: string;
   white?: string;
 };
 
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(callback: () => void) {
+  const mediaQuery = window.matchMedia(reducedMotionQuery);
+  mediaQuery.addEventListener("change", callback);
+
+  return () => mediaQuery.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
+function subscribeToHeaderScroll(callback: () => void) {
+  window.addEventListener("scroll", callback, { passive: true });
+
+  return () => window.removeEventListener("scroll", callback);
+}
+
+function getHeaderScrollSnapshot() {
+  return window.scrollY > 40;
+}
+
+function getHeaderScrollServerSnapshot() {
+  return false;
+}
+
 export function AnimatedHeaderLogo({
   red = "#FF0814",
   white = "#FFFFFF",
 }: AnimatedHeaderLogoProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 40);
-  }, []);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", listener);
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      mediaQuery.removeEventListener("change", listener);
-    };
-  }, [handleScroll]);
+  const isScrolled = useSyncExternalStore(
+    subscribeToHeaderScroll,
+    getHeaderScrollSnapshot,
+    getHeaderScrollServerSnapshot,
+  );
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot,
+  );
 
   const transitionDuration = prefersReducedMotion ? "0ms" : "600ms";
   const transitionEasing = "cubic-bezier(0.22, 1, 0.36, 1)";
