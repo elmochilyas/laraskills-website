@@ -37,13 +37,14 @@ export function getToolIcon(iconKey: string): IconConfig | undefined {
   return registry[iconKey];
 }
 
-export function renderIconSvg(path: string, className = "h-5 w-5") {
+export function renderIconSvg(path: string, size: number = 22) {
   return (
     <svg
       role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      style={{ width: size, height: size }}
+      className="shrink-0"
       fill="#fff"
     >
       <path d={path} />
