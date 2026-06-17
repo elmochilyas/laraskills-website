@@ -1,8 +1,8 @@
-# MCP Showcase — Capability Specification
+# MCP Section — Capability Specification
 
 ## Purpose
 
-The MCP showcase communicates that Laraskills exposes read-only, deterministic, local-retrieval MCP tools compatible with AI coding agents (OpenCode, Claude Code, Cursor, etc.). On the homepage, a simplified value section introduces the MCP layer. Detailed tool reference lives on the public `/mcp` page and `/docs/mcp`.
+The homepage MCP section communicates the core value of Laraskills MCP to visitors in a compact, visual format — no full tool cards with I/O schemas. It helps visitors understand the MCP layer's purpose in 5 seconds and directs them to the public `/mcp` page for details.
 
 ## Requirements
 
@@ -10,14 +10,16 @@ The MCP showcase communicates that Laraskills exposes read-only, deterministic, 
 
 The system SHALL display an MCP section on the homepage that communicates the core value of Laraskills MCP in a compact, visual format — no full tool cards with I/O schemas.
 
-#### Scenario: Section renders with heading and subtitle
-- **WHEN** the MCP showcase section is rendered
-- **THEN** it SHALL display a section heading and a descriptive subtitle explaining that Laraskills exposes read-only MCP tools
+#### Scenario: Section displays eyebrow and heading
 - **WHEN** the MCP section is rendered on the homepage
-- **THEN** the section heading SHALL be "Local Laravel context for AI coding agents" with eyebrow "MCP LAYER"
+- **THEN** it SHALL display an eyebrow label "MCP LAYER" and a heading "Local Laravel context for AI coding agents"
+
+#### Scenario: Section displays short paragraph
+- **WHEN** the MCP section is rendered on the homepage
+- **THEN** it SHALL display a paragraph of no more than 2 lines explaining that Laraskills gives AI coding agents a local MCP layer for retrieving Laravel-specific context
 
 #### Scenario: Section displays 3 value cards
-- **WHEN** the simplified MCP section is rendered on the homepage
+- **WHEN** the MCP section is rendered on the homepage
 - **THEN** it SHALL display exactly 3 compact value cards labeled "Read-only", "Local retrieval", and "Deterministic context", each with a brief one-line explanation
 
 #### Scenario: Section displays 4-step flow diagram
@@ -28,9 +30,9 @@ The system SHALL display an MCP section on the homepage that communicates the co
 - **WHEN** the MCP section is rendered on the homepage
 - **THEN** it SHALL include a call-to-action button labeled "Explore MCP docs" linking to `/mcp`
 
-#### Scenario: Section branding is Laraskills
-- **WHEN** the simplified MCP section is rendered on the homepage
-- **THEN** the section SHALL use "Laraskills" branding
+#### Scenario: Section follows existing layout patterns
+- **WHEN** the MCP section is rendered on the homepage
+- **THEN** it SHALL use `Section` and `PageContainer` components for consistent layout
 
 #### Scenario: Section does not display tool I/O schemas
 - **WHEN** the MCP section is rendered on the homepage
@@ -41,3 +43,11 @@ The system SHALL display an MCP section on the homepage that communicates the co
 - **THEN** the 3 value cards SHALL display in a horizontal row and the flow diagram SHALL display horizontally
 - **WHEN** the viewport is narrower than 768px
 - **THEN** value cards and flow diagram SHALL stack vertically
+
+### Requirement: Section appears between existing sections
+
+The MCP section SHALL replace the old McpProtocolSection at the same position in the homepage section ordering.
+
+#### Scenario: Section appears after CLI showcase
+- **WHEN** the homepage is rendered
+- **THEN** the MCP section SHALL appear after the CLI showcase section

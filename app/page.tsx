@@ -9,7 +9,7 @@ import EcosystemSection from "@/components/EcosystemSection";
 import AgentUpgradeSection from "@/components/AgentUpgradeSection";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import CliCommandCard from "@/components/CliCommandCard";
-import McpToolCard from "@/components/McpToolCard";
+import McpSection from "@/components/McpSection";
 import IntegrationCloudItem from "@/components/IntegrationCloudItem";
 import IntegrationGroupCard from "@/components/IntegrationGroupCard";
 import HowItWorksSection from "@/components/HowItWorksSection";
@@ -91,28 +91,6 @@ export default function Home() {
         {
             command: "npx laraskills doctor",
             label: "SYSTEM / DIAGNOSTICS"
-        }
-    ];
-    /* TODO: verify these MCP tool names match the real Laraskills MCP server exports before production launch */ const mcpTools = [
-        {
-            name: "retrieve_context_bundle",
-            description: "Return the smallest useful Laraskills context bundle for a Laravel engineering task."
-        },
-        {
-            name: "search_ecc",
-            description: "Search the Laraskills knowledge unit catalog with ranked results."
-        },
-        {
-            name: "get_knowledge_unit",
-            description: "Inspect a single canonical knowledge unit by ID with bounded content."
-        },
-        {
-            name: "get_graph_context",
-            description: "Return prerequisites and related topics for a knowledge unit."
-        },
-        {
-            name: "validate_ecc",
-            description: "Validate the structural integrity of the Laraskills intelligence layer."
         }
     ];
     const reducedMotion = useSyncExternalStore(
@@ -2276,37 +2254,7 @@ export default function Home() {
                     ]
                 })
             }),
-            /*#__PURE__*/ _jsx(Section, {
-                variant: "alt",
-                children: /*#__PURE__*/ _jsxs(PageContainer, {
-                    children: [
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-12 text-center",
-                            children: [
-                                /*#__PURE__*/ _jsx("span", {
-                                    className: "section-eyebrow",
-                                    children: "Protocol"
-                                }),
-                                /*#__PURE__*/ _jsx("h2", {
-                                    className: "section-title",
-                                    children: "MCP tools for coding agents"
-                                }),
-                                /*#__PURE__*/ _jsx("p", {
-                                    className: "section-lead mx-auto",
-                                    children: "Laraskills exposes read-only, deterministic, local-retrieval MCP tools for compatible coding agents"
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3",
-                            children: mcpTools.map((tool, index)=>/*#__PURE__*/ _jsx(McpToolCard, {
-                                    name: tool.name,
-                                    description: tool.description
-                                }, index))
-                        })
-                    ]
-                })
-            }),
+            /*#__PURE__*/ _jsx(McpSection, {}),
             /*#__PURE__*/ _jsx(Section, {
                 variant: "surface",
                 children: /*#__PURE__*/ _jsxs(PageContainer, {
