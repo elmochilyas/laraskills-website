@@ -7,7 +7,7 @@
       "tools": [
         { "name": "OpenCode", "icon": "opencode" },
         { "name": "Gemini CLI", "icon": "googlegemini" },
-        { "name": "Codex CLI" },
+        { "name": "Codex CLI", "icon": "codex" },
         { "name": "Qwen", "icon": "qwen" }
       ]
     },
@@ -17,9 +17,9 @@
       "description": "Bring Laravel-specific context into the editors where your code lives.",
       "tools": [
         { "name": "Cursor", "icon": "cursor" },
-        { "name": "VS Code" },
+        { "name": "VS Code", "icon": "vscode" },
         { "name": "Zed", "icon": "zedindustries" },
-        { "name": "Trae" }
+        { "name": "Trae", "icon": "trae" }
       ]
     },
     {
@@ -29,8 +29,8 @@
       "tools": [
         { "name": "Claude Code", "icon": "claude" },
         { "name": "GitHub Copilot", "icon": "githubcopilot" },
-        { "name": "CodeBuddy" },
-        { "name": "Kiro" }
+        { "name": "CodeBuddy", "icon": "codebuddy" },
+        { "name": "Kiro", "icon": "kiro" }
       ]
     }
   ],
@@ -39,13 +39,13 @@
     { "name": "Claude Code", "icon": "claude" },
     { "name": "Cursor", "icon": "cursor" },
     { "name": "Gemini CLI", "icon": "googlegemini" },
-    { "name": "Codex CLI" },
+    { "name": "Codex CLI", "icon": "codex" },
     { "name": "GitHub Copilot", "icon": "githubcopilot" },
-    { "name": "VS Code" },
+    { "name": "VS Code", "icon": "vscode" },
     { "name": "Zed", "icon": "zedindustries" },
-    { "name": "Trae" },
+    { "name": "Trae", "icon": "trae" },
     { "name": "Qwen", "icon": "qwen" },
-    { "name": "CodeBuddy" },
-    { "name": "Kiro" }
+    { "name": "CodeBuddy", "icon": "codebuddy" },
+    { "name": "Kiro", "icon": "kiro" }
   ]
 }

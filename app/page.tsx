@@ -16,7 +16,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import HeroSection from "@/components/HeroSection";
 import supportedTools from "@/data/supported-tools.json";
 import { siteConfig } from "@/lib/site-config";
-import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 
@@ -100,26 +100,26 @@ export default function Home() {
     );
     const [activeIndex, setActiveIndex] = useState(4);
     const [hoverPaused, setHoverPaused] = useState(false);
-    const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const cycleRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
       if (reducedMotion || hoverPaused) return;
-      cycleRef.current = setInterval(() => {
+      const id = setInterval(() => {
         setActiveIndex((i) => (i + 1) % 6);
       }, 4000);
-      return () => {
-        if (cycleRef.current) clearInterval(cycleRef.current);
-      };
+      return () => clearInterval(id);
     }, [reducedMotion, hoverPaused]);
+
+    useEffect(() => {
+      if (!hoverPaused) return;
+      const id = setTimeout(() => {
+        setHoverPaused(false);
+      }, 4000);
+      return () => clearTimeout(id);
+    }, [hoverPaused]);
 
     const handleRowHover = useCallback((index: number) => {
       setActiveIndex(index);
       setHoverPaused(true);
-      if (resumeRef.current) clearTimeout(resumeRef.current);
-      resumeRef.current = setTimeout(() => {
-        setHoverPaused(false);
-      }, 4000);
     }, []);
     return /*#__PURE__*/ _jsxs(_Fragment, {
         children: [
@@ -2278,7 +2278,7 @@ export default function Home() {
                         }),
                         /*#__PURE__*/ _jsx("div", {
                             className: "mb-14 flex flex-wrap justify-center gap-3",
-                            children: supportedTools.allTools.map((tool, i)=>/*#__PURE__*/ _jsx(IntegrationCloudItem, {
+                            children: supportedTools.allTools.map((tool: { name: string; icon?: string }, i)=>/*#__PURE__*/ _jsx(IntegrationCloudItem, {
                                     name: tool.name,
                                     icon: tool.icon
                                 }, i))
