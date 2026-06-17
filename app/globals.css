@@ -1368,7 +1368,43 @@ body {
   opacity: 0.25;
 }
 
-/* â”€â”€ Reduced motion â”€â”€ */
+/* ── Pipeline animation ── */
+
+@keyframes pipelineMove {
+  0% {
+    top: 12px;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  25% {
+    top: 12px;
+  }
+  42% {
+    top: 34%;
+  }
+  58% {
+    top: 58%;
+  }
+  75% {
+    top: calc(100% - 12px);
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 12px);
+    opacity: 0;
+  }
+}
+
+.pipeline-dot,
+.pipeline-glow {
+  animation: pipelineMove 4.8s ease-in-out infinite;
+}
+
+/* ── Reduced motion ── */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -19,31 +19,54 @@ export const metadata: Metadata = {
   },
 };
 
-const tools = [
+type ToolData = {
+  name: string;
+  description: string;
+  inputs: string[];
+  outputs: string[];
+  badges: string[];
+};
+
+const tools: ToolData[] = [
   {
     name: "retrieve_context_bundle",
     description:
-      "Return a context bundle for a Laravel engineering task. Accepts a task description and optional parameters for depth, budget, and domain filtering.",
+      "Return the smallest useful LaraSkills context bundle for a Laravel engineering task.",
+    inputs: ["task: string", "scope?: compact | standard | deep"],
+    outputs: ["context_bundle: object"],
+    badges: ["READ-ONLY", "LOCAL", "DETERMINISTIC"],
   },
   {
     name: "search_ecc",
     description:
-      "Search the knowledge unit catalog. Returns ranked results with scoring signals and source paths.",
+      "Search the LaraSkills knowledge unit catalog with ranked deterministic results.",
+    inputs: ["query: string", "limit?: number"],
+    outputs: ["ranked_units: array"],
+    badges: ["READ-ONLY", "LOCAL", "DETERMINISTIC"],
   },
   {
     name: "get_knowledge_unit",
     description:
-      "Inspect a single knowledge unit by ID. Shows metadata, content summary, and artifact references.",
+      "Inspect a single canonical knowledge unit by ID with bounded content.",
+    inputs: ["unit_id: string"],
+    outputs: ["knowledge_unit: object"],
+    badges: ["READ-ONLY", "LOCAL"],
   },
   {
     name: "get_graph_context",
     description:
-      "Return prerequisites and related topics for a knowledge unit. Supports configurable depth and count limits.",
+      "Return prerequisites, dependencies, and related topics for a knowledge unit.",
+    inputs: ["unit_id: string", "depth?: number"],
+    outputs: ["graph_context: object"],
+    badges: ["READ-ONLY", "LOCAL"],
   },
   {
     name: "validate_ecc",
     description:
-      "Validate the structural integrity of the intelligence layer. Returns KU count, edge counts, and cycle information.",
+      "Validate the structural integrity of the LaraSkills intelligence layer.",
+    inputs: ["none"],
+    outputs: ["validation_report: object"],
+    badges: ["READ-ONLY", "LOCAL", "DETERMINISTIC"],
   },
 ];
 
@@ -93,9 +116,25 @@ export default function McpPage() {
             key={tool.name}
             name={tool.name}
             description={tool.description}
+            inputs={tool.inputs}
+            outputs={tool.outputs}
+            badges={tool.badges}
           />
         ))}
       </div>
+
+      <Card className="mt-8">
+        <h2 className="text-base font-semibold text-text">
+          Connection & setup
+        </h2>
+        <p className="mt-2 text-sm text-text-muted leading-relaxed">
+          The Laraskills MCP server connects to your local knowledge base
+          immediately after installation. It operates in <strong className="text-text">read-only</strong> mode
+          over <strong className="text-text">local transport</strong>, exposing all 5 tools.
+          No network calls, no data leaves your machine, and no configuration
+          is needed beyond adding the MCP server entry to your AI coding agent.
+        </p>
+      </Card>
     </>
   );
 }
