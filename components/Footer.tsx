@@ -9,13 +9,12 @@ const productLinks = [
   { label: "MCP Integration", href: "/docs/mcp" },
 ];
 
-const resourceLinks = [
+const footerLinks = [
+  { label: "Docs", href: "/docs" },
+  { label: "Skills", href: "/skills" },
+  { label: "MCP", href: "/mcp" },
   { label: "Glossary", href: "/glossary" },
   { label: "Research", href: "/research" },
-  { label: "Skills", href: "/docs/skills" },
-];
-
-const connectLinks = [
   { label: "GitHub", href: "https://github.com/elmochilyas/laraskills", external: true },
 ];
 
