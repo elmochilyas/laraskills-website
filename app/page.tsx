@@ -16,6 +16,24 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import HeroSection from "@/components/HeroSection";
 import supportedTools from "@/data/supported-tools.json";
 import { siteConfig } from "@/lib/site-config";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(callback: () => void) {
+  const mq = window.matchMedia(reducedMotionQuery);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(reducedMotionQuery).matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
 export default function Home() {
     const architectureLayers = [
         {
@@ -52,27 +70,27 @@ export default function Home() {
     const cliCommands = [
         {
             command: "npm install --save-dev laraskills",
-            label: "Install Laraskills"
+            label: "INSTALL / LARASKILLS"
         },
         {
             command: 'npx laraskills retrieve "Optimize an N+1 query" --mode compact',
-            label: "Retrieve context"
+            label: "RETRIEVE / CONTEXT"
         },
         {
             command: 'npx laraskills search "Policies versus Gates"',
-            label: "Search knowledge"
+            label: "SEARCH / KNOWLEDGE"
         },
         {
             command: "npx laraskills get security-identity-engineering/authentication/sanctum-spa-authentication",
-            label: "Inspect knowledge unit"
+            label: "INSPECT / KNOWLEDGE UNIT"
         },
         {
             command: "npx laraskills validate",
-            label: "Validate knowledge graph"
+            label: "VALIDATE / KNOWLEDGE GRAPH"
         },
         {
             command: "npx laraskills doctor",
-            label: "System diagnostics"
+            label: "SYSTEM / DIAGNOSTICS"
         }
     ];
     /* TODO: verify these MCP tool names match the real Laraskills MCP server exports before production launch */ const mcpTools = [
@@ -97,6 +115,34 @@ export default function Home() {
             description: "Validate the structural integrity of the Laraskills intelligence layer."
         }
     ];
+    const reducedMotion = useSyncExternalStore(
+      subscribeToReducedMotion,
+      getReducedMotionSnapshot,
+      getReducedMotionServerSnapshot
+    );
+    const [activeIndex, setActiveIndex] = useState(4);
+    const [hoverPaused, setHoverPaused] = useState(false);
+    const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const cycleRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+    useEffect(() => {
+      if (reducedMotion || hoverPaused) return;
+      cycleRef.current = setInterval(() => {
+        setActiveIndex((i) => (i + 1) % 6);
+      }, 4000);
+      return () => {
+        if (cycleRef.current) clearInterval(cycleRef.current);
+      };
+    }, [reducedMotion, hoverPaused]);
+
+    const handleRowHover = useCallback((index: number) => {
+      setActiveIndex(index);
+      setHoverPaused(true);
+      if (resumeRef.current) clearTimeout(resumeRef.current);
+      resumeRef.current = setTimeout(() => {
+        setHoverPaused(false);
+      }, 4000);
+    }, []);
     return /*#__PURE__*/ _jsxs(_Fragment, {
         children: [
             /*#__PURE__*/ _jsx("script", {
@@ -2116,9 +2162,35 @@ export default function Home() {
                         /*#__PURE__*/ _jsxs("div", {
                             className: "mb-12 text-center",
                             children: [
-                                /*#__PURE__*/ _jsx("span", {
+                                /*#__PURE__*/ _jsxs("span", {
                                     className: "section-eyebrow",
-                                    children: "Terminal"
+                                    children: [
+                                        /*#__PURE__*/ _jsx("svg", {
+                                            className: "h-3.5 w-3.5",
+                                            viewBox: "0 0 24 24",
+                                            fill: "none",
+                                            stroke: "currentColor",
+                                            strokeWidth: "2",
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            children: /*#__PURE__*/ _jsxs("polyline", {
+                                                points: "4 17 10 11 4 5"
+                                            })
+                                        }),
+                                        "Terminal",
+                                        /*#__PURE__*/ _jsx("svg", {
+                                            className: "h-3.5 w-3.5",
+                                            viewBox: "0 0 24 24",
+                                            fill: "none",
+                                            stroke: "currentColor",
+                                            strokeWidth: "2",
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            children: /*#__PURE__*/ _jsxs("polyline", {
+                                                points: "20 5 14 11 20 17"
+                                            })
+                                        })
+                                    ]
                                 }),
                                 /*#__PURE__*/ _jsx("h2", {
                                     className: "section-title",
@@ -2130,12 +2202,76 @@ export default function Home() {
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "grid grid-cols-1 gap-4 lg:grid-cols-2",
-                            children: cliCommands.map((cmd, index)=>/*#__PURE__*/ _jsx(CliCommandCard, {
-                                    command: cmd.command,
-                                    label: cmd.label
-                                }, index))
+                        /*#__PURE__*/ _jsxs("div", {
+                            className: "relative mx-auto max-w-3xl overflow-hidden rounded-xl border border-border bg-bg-elevated shadow-xl shadow-black/30 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/[0.06] before:to-transparent",
+                            children: [
+                                /*#__PURE__*/ _jsxs("div", {
+                                    className: "flex items-center justify-between gap-2 border-b border-white/[0.055] bg-black/20 px-4 sm:px-5 py-[10px]",
+                                    children: [
+                                        /*#__PURE__*/ _jsxs("div", {
+                                            className: "flex items-center gap-2.5",
+                                            children: [
+                                                /*#__PURE__*/ _jsxs("div", {
+                                                    className: "flex items-center gap-1.5",
+                                                    children: [
+                                                        /*#__PURE__*/ _jsx("span", { className: "h-2.5 w-2.5 rounded-full bg-[#ff5f57]" }),
+                                                        /*#__PURE__*/ _jsx("span", { className: "h-2.5 w-2.5 rounded-full bg-[#febc2e]" }),
+                                                        /*#__PURE__*/ _jsx("span", { className: "h-2.5 w-2.5 rounded-full bg-[#28c840]" })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ _jsx("span", {
+                                                    className: "font-mono text-[12px] font-medium text-text-muted/70",
+                                                    children: "laraskills"
+                                                }),
+                                                /*#__PURE__*/ _jsx("span", {
+                                                    className: "font-mono text-[10px] text-text-dim/50",
+                                                    children: "bash \u00B7 80\u00D724"
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ _jsxs("div", {
+                                            className: "flex items-center gap-2",
+                                            children: [
+                                                /*#__PURE__*/ _jsxs("span", {
+                                                    className: "inline-flex items-center gap-1.5 rounded-full border border-accent/15 bg-accent/[0.06] px-2 py-0.5",
+                                                    children: [
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "w-[5px] h-[5px] rounded-full bg-accent shadow-[0_0_6px_rgba(45,212,191,0.35)]"
+                                                        }),
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-accent/80",
+                                                            children: "LIVE"
+                                                        })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ _jsx("span", {
+                                                    className: "hidden sm:inline font-mono text-[10px] text-text-dim/50",
+                                                    children: "CLI ready \u00B7 graph OK"
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ _jsxs("div", {
+                                    className: "relative",
+                                    children: [
+                                        /*#__PURE__*/ _jsx("div", {
+                                            "aria-hidden": true,
+                                            className: "absolute left-[40px] sm:left-[40px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-text-dim/15 to-transparent pointer-events-none"
+                                        }),
+                                        /*#__PURE__*/ _jsx("div", {
+                                            className: "divide-y divide-white/[0.025]",
+                                            children: cliCommands.map((cmd, index)=>/*#__PURE__*/ _jsx(CliCommandCard, {
+                                                    command: cmd.command,
+                                                    label: cmd.label,
+                                                    index: index,
+                                                    isActive: index === activeIndex,
+                                                    onHover: handleRowHover
+                                                }, index))
+                                        })
+                                    ]
+                                })
+                            ]
                         })
                     ]
                 })
