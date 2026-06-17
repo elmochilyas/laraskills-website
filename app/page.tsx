@@ -10,8 +10,7 @@ import AgentUpgradeSection from "@/components/AgentUpgradeSection";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import CliCommandCard from "@/components/CliCommandCard";
 import McpSection from "@/components/McpSection";
-import IntegrationCloudItem from "@/components/IntegrationCloudItem";
-import IntegrationGroupCard from "@/components/IntegrationGroupCard";
+import BrandIcon from "@/components/BrandIcon";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import HeroSection from "@/components/HeroSection";
 import supportedTools from "@/data/supported-tools.json";
@@ -1116,7 +1115,7 @@ export default function Home() {
                                                                                         }),
                                                                                         /*#__PURE__*/ _jsx("span", {
                                                                                             className: "text-accent/90 font-semibold",
-                                                                                            children: "context ready — 2.4s"
+                                                                                            children: "context ready - 2.4s"
                                                                                         })
                                                                                     ]
                                                                                 }),
@@ -1790,7 +1789,7 @@ export default function Home() {
                                                                         }),
                                                                         /*#__PURE__*/ _jsx("span", {
                                                                             className: "text-accent/90 font-semibold",
-                                                                            children: "context ready — 2.4s"
+                                                                            children: "context ready - 2.4s"
                                                                         })
                                                                     ]
                                                                 }),
@@ -2260,39 +2259,141 @@ export default function Home() {
                 children: /*#__PURE__*/ _jsxs(PageContainer, {
                     children: [
                         /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-12 text-center",
+                            className: "mb-8 text-center",
                             children: [
                                 /*#__PURE__*/ _jsx("span", {
                                     className: "section-eyebrow",
-                                    children: "Ecosystem"
+                                    children: "SUPPORTED STACK"
                                 }),
                                 /*#__PURE__*/ _jsx("h2", {
                                     className: "section-title",
-                                    children: "Works with your Laravel AI stack"
+                                    children: "Works with the tools you already trust"
                                 }),
                                 /*#__PURE__*/ _jsx("p", {
                                     className: "section-lead mx-auto",
-                                    children: "Use Laraskills with the coding agents, editors, and assistants already in your workflow."
+                                    children: "Bring Laravel-specific context into your existing AI coding workflow \u2014 terminal, editor, or assistant."
                                 })
                             ]
                         }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "mb-14 flex flex-wrap justify-center gap-3",
-                            children: supportedTools.allTools.map((tool: { name: string; icon?: string }, i)=>/*#__PURE__*/ _jsx(IntegrationCloudItem, {
-                                    name: tool.name,
-                                    icon: tool.icon
-                                }, i))
-                        }),
-                        /*#__PURE__*/ _jsx("div", {
-                            className: "grid grid-cols-1 gap-4 lg:grid-cols-3",
-                            children: supportedTools.groups.map((group)=>/*#__PURE__*/ _jsx(IntegrationGroupCard, {
-                                    title: group.title,
-                                    description: group.description,
-                                    tools: group.tools
-                                }, group.id))
+                        /*#__PURE__*/ _jsxs("div", {
+                            className: "relative mx-auto max-w-3xl",
+                            children: [
+                                /*#__PURE__*/ _jsx("div", {
+                                    "aria-hidden": true,
+                                    className: "absolute -inset-10 rounded-2xl opacity-30 blur-3xl pointer-events-none",
+                                    style: {
+                                        background: "radial-gradient(ellipse at center, #e63946 0%, #7c3aed 45%, transparent 70%)"
+                                    }
+                                }),
+                                /*#__PURE__*/ _jsxs("div", {
+                                    className: "relative rounded-2xl border border-border bg-bg-elevated shadow-2xl shadow-black/40 overflow-hidden before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/[0.12] before:to-transparent",
+                                    children: [
+                                        /*#__PURE__*/ _jsxs("div", {
+                                            className: "flex items-center gap-2.5 border-b border-white/[0.06] bg-black/30 px-4 py-2",
+                                            children: [
+                                                /*#__PURE__*/ _jsxs("div", {
+                                                    className: "flex items-center gap-1.5",
+                                                    children: [
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "h-2.5 w-2.5 rounded-full bg-[#ff5f57]"
+                                                        }),
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "h-2.5 w-2.5 rounded-full bg-[#febc2e]"
+                                                        }),
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "h-2.5 w-2.5 rounded-full bg-[#28c840]"
+                                                        })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ _jsx("span", {
+                                                    className: "font-mono text-[11px] font-medium text-text-muted/60",
+                                                    children: "laraskills"
+                                                })
+                                            ]
+                                        }),
+                                        /*#__PURE__*/ _jsx("div", {
+                                            "aria-hidden": true,
+                                            className: "absolute inset-0 pointer-events-none",
+                                            style: {
+                                                background: "radial-gradient(ellipse at 50% 25%, rgba(230,57,70,0.08) 0%, rgba(124,58,237,0.04) 40%, transparent 70%)"
+                                            }
+                                        }),
+                                        /*#__PURE__*/ _jsxs("div", {
+                                            className: "p-4 sm:p-5 space-y-4",
+                                            children: [
+                                                /*#__PURE__*/ _jsxs("div", {
+                                                    className: "font-mono text-sm pl-1",
+                                                    children: [
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "text-accent font-semibold",
+                                                            children: "$"
+                                                        }),
+                                                        /*#__PURE__*/ _jsx("span", {
+                                                            className: "text-text-muted ml-2",
+                                                            children: "laraskills works-with"
+                                                        })
+                                                    ]
+                                                }),
+                                                /*#__PURE__*/ _jsx("div", {
+                                                    className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1.5",
+                                                    children: supportedTools.allTools.map((tool: { name: string; icon?: string }, i)=>/*#__PURE__*/ _jsxs("div", {
+                                                            className: "inline-flex items-center gap-2.5 rounded-2xl border border-white/[0.04] bg-white/[0.045] px-4 py-1.5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(230,57,70,0.08)] hover:border-white/[0.12] hover:bg-white/[0.075] group",
+                                                            children: [
+                                                                /*#__PURE__*/ _jsx(BrandIcon, {
+                                                                    iconKey: tool.icon,
+                                                                    size: 26
+                                                                }),
+                                                                /*#__PURE__*/ _jsx("span", {
+                                                                    className: "text-sm font-medium text-text group-hover:text-text",
+                                                                    children: tool.name
+                                                                })
+                                                            ]
+                                                        }, i))
+                                                }),
+                                                /*#__PURE__*/ _jsx("div", {
+                                                    className: "border-t border-white/[0.06]"
+                                                }),
+                                                /*#__PURE__*/ _jsxs("div", {
+                                                    className: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1",
+                                                    children: [
+                                                        /*#__PURE__*/ _jsxs("div", {
+                                                            className: "flex items-center gap-2",
+                                                            children: [
+                                                                /*#__PURE__*/ _jsx("span", {
+                                                                    className: "h-2 w-2 rounded-full bg-accent shadow-[0_0_8px_rgba(45,212,191,0.4)] shrink-0"
+                                                                }),
+                                                                /*#__PURE__*/ _jsx("span", {
+                                                                    className: "font-mono text-[12px] text-text-muted leading-relaxed",
+                                                                    children: "No migration. No vendor lock-in. Laravel context where your agent works."
+                                                                })
+                                                            ]
+                                                        }),
+                                                        /*#__PURE__*/ _jsx(Button, {
+                                                            variant: "ghost",
+                                                            size: "sm",
+                                                            href: "/docs/integrations",
+                                                            className: "rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-white/75 transition hover:border-red-400/35 hover:bg-red-500/[0.06] hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.10)] group whitespace-nowrap",
+                                                            children: /*#__PURE__*/ _jsxs("span", {
+                                                                className: "flex items-center gap-2",
+                                                                children: [
+                                                                    "View integration docs",
+                                                                    /*#__PURE__*/ _jsx("span", {
+                                                                        className: "transition-transform duration-300 group-hover:translate-x-0.5",
+                                                                        children: "\u2192"
+                                                                    })
+                                                                ]
+                                                            })
+                                                        })
+                                                    ]
+                                                })
+                                            ]
+                                        })
+                                    ]
+                                })
+                            ]
                         }),
                         /*#__PURE__*/ _jsx("p", {
-                            className: "mt-10 text-center text-[11px] text-text-dim/50",
+                            className: "mt-8 text-center text-[11px] text-text-dim/50",
                             children: "Tool names and logos are trademarks of their respective owners."
                         })
                     ]

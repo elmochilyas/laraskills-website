@@ -1,10 +1,4 @@
-# Integrations and Research Proof — Capability Specification
-
-## Purpose
-
-Three homepage sections — supported coding agents/tools grid, research/evidence summary, and final call-to-action — that build visitor trust through transparent tool support and honest research evidence.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Supported tools grid displays coding agents and tools
 
@@ -71,64 +65,12 @@ The system SHALL display a unified Developer Dock section on the homepage showin
 
 ### Requirement: Research section displays study evidence
 
-The system SHALL display a research/evidence summary section presenting transparent study results.
-
-#### Scenario: Section displays 4 research facts
-- **WHEN** the research section is rendered
-- **THEN** it SHALL display these 4 facts:
-  - 9 isolated OpenCode runs
-  - 3 Laravel implementation scenarios
-  - 100% test and Pint pass rate
-  - Required-context mode won 2 of 3 scenarios
-
-#### Scenario: Facts are presented as styled stat items
-- **WHEN** a research fact is rendered
-- **THEN** it SHALL display a prominent value and a descriptive label below it
-
-#### Scenario: Section includes honest framing text
-- **WHEN** the research section is rendered
-- **THEN** it SHALL include text explicitly noting these are study results, without claiming Laraskills always beats baseline agents
-
-#### Scenario: Section includes a "Read the research" link
-- **WHEN** the research section is rendered
-- **THEN** it SHALL include a link labeled "Read the research" pointing to `/research`
-
-#### Scenario: No inflated claims are made
-- **WHEN** the research section is inspected
-- **THEN** it SHALL NOT claim Laraskills always outperforms generic agents, and SHALL use honest transparent language
+(Unchanged — see base spec at `openspec/specs/integrations-and-research-proof/spec.md`)
 
 ### Requirement: Final call-to-action section closes the page
 
-The system SHALL display a final call-to-action section at the bottom of the homepage with install command and navigation links.
-
-#### Scenario: Section displays install command
-- **WHEN** the final CTA section is rendered
-- **THEN** it SHALL display the install command `npx laraskills@beta install` in a styled block
-
-#### Scenario: Section displays primary CTA button
-- **WHEN** the final CTA section is rendered
-- **THEN** it SHALL include a primary Button labeled "Install Laraskills" linking to the GitHub repository
-
-#### Scenario: Section displays secondary CTA button
-- **WHEN** the final CTA section is rendered
-- **THEN** it SHALL include a secondary Button labeled "View GitHub" linking to the GitHub repository
-
-#### Scenario: Section displays tertiary docs link
-- **WHEN** the final CTA section is rendered
-- **THEN** it SHALL include a tertiary link labeled "Read the docs" with `href="/docs"` as a placeholder
-
-#### Scenario: Section heading reinforces value proposition
-- **WHEN** the final CTA section is rendered
-- **THEN** it SHALL display a heading and subtitle that reinforce the Laraskills value proposition
+(Unchanged — see base spec at `openspec/specs/integrations-and-research-proof/spec.md`)
 
 ### Requirement: All sections reuse existing foundation components
 
-The system SHALL build all three proof sections using existing components without introducing new UI libraries.
-
-#### Scenario: Sections use Section and PageContainer
-- **WHEN** any proof section is rendered
-- **THEN** it SHALL use the Section component as the outer wrapper and PageContainer for content width
-
-#### Scenario: No external UI libraries are used
-- **WHEN** the proof sections are inspected
-- **THEN** all styling SHALL use existing CSS design tokens and Tailwind utilities
+(Unchanged — see base spec at `openspec/specs/integrations-and-research-proof/spec.md`)
