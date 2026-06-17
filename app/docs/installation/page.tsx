@@ -32,10 +32,7 @@ export default function InstallationPage() {
         Install Laraskills globally via npm:
       </p>
       <div className="mt-3 max-w-xl">
-        <CliCommandCard
-          command="npm install -g laraskills"
-          label="npm"
-        />
+        <CliCommandCard command="npm install -g laraskills" label="npm" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold text-text">
@@ -45,10 +42,7 @@ export default function InstallationPage() {
         Clone the repository and install dependencies:
       </p>
       <div className="mt-3 max-w-xl">
-        <CliCommandCard
-          command="git clone https://github.com/elmochilyas/laraskills.git && cd laraskills && npm install"
-          label="Source"
-        />
+        <CliCommandCard command="git clone https://github.com/elmochilyas/laraskills.git && cd laraskills && npm install" label="Source" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold text-text">
@@ -58,10 +52,7 @@ export default function InstallationPage() {
         Update to the latest version:
       </p>
       <div className="mt-3 max-w-xl">
-        <CliCommandCard
-          command="npm update -g laraskills"
-          label="Update"
-        />
+        <CliCommandCard command="npm update -g laraskills" label="Update" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold text-text">
@@ -71,10 +62,7 @@ export default function InstallationPage() {
         Run the doctor command to verify everything is working:
       </p>
       <div className="mt-3 max-w-xl">
-        <CliCommandCard
-          command="laraskills doctor"
-          label="Doctor"
-        />
+        <CliCommandCard command="laraskills doctor" label="Doctor" />
       </div>
     </>
   );

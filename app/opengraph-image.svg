@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&amp;display=swap');
+    .heading { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  </style>
+  <rect width="1200" height="630" fill="#0b0b0f" />
+  <rect width="1200" height="630" fill="url(#grain)" opacity="0.03" />
+  <defs>
+    <pattern id="grain" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0h1v1H0zM2 2h1v1H2z" fill="white" />
+    </pattern>
+  </defs>
+  <line x1="0" y1="315" x2="1200" y2="315" stroke="rgba(230,57,70,0.04)" stroke-width="1" />
+  <line x1="600" y1="0" x2="600" y2="630" stroke="rgba(230,57,70,0.04)" stroke-width="1" />
+  <rect x="96" y="195" width="240" height="240" rx="36" fill="#1A1A1E" />
+  <rect x="96" y="195" width="240" height="240" rx="36" stroke="#E63946" stroke-width="1.5" stroke-opacity="0.2" />
+  
+  <g transform="translate(136, 235) scale(3.5)">
+    <!-- Shadow/Depth Layer -->
+    <rect x="14" y="34" width="26" height="8" rx="1.5" fill="#BA2D39" />
+    <!-- Vertical Pillar -->
+    <rect x="8" y="6" width="10" height="36" rx="1.5" fill="#E63946" />
+    <!-- Horizontal Base -->
+    <rect x="18" y="32" width="22" height="10" rx="1.5" fill="#E63946" />
+    <!-- AI Spark -->
+    <path d="M13 22.5L15.5 25L13 27.5L10.5 25L13 22.5Z" fill="white" />
+  </g>
+
+  <text x="380" y="310" fill="#ffffff" class="heading" font-size="72" font-weight="400" letter-spacing="-0.03em">Lara</text>
+  <text x="532" y="310" fill="#E63946" class="heading" font-size="72" font-weight="700" letter-spacing="-0.03em">Skills</text>
+  <text x="380" y="370" fill="rgba(255,255,255,0.45)" class="heading" font-size="22" font-weight="400" letter-spacing="-0.01em">
+    Laravel AI Engineering Knowledge System
+  </text>
+  <rect x="380" y="395" width="160" height="1.5" rx="0.75" fill="rgba(230,57,70,0.4)" />
+</svg>

@@ -52,7 +52,7 @@
 
 html {
   min-height: 100dvh;
-  --navbar-height: 56px;
+  --navbar-height: 64px;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -688,6 +688,386 @@ body {
   border-bottom: 1px solid var(--color-glass-strong-border);
 }
 
+/* Architecture diagram */
+
+.architecture-diagram {
+  position: relative;
+  isolation: isolate;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(ellipse 42rem 16rem at 50% 18%, rgba(230, 57, 70, 0.075), transparent 68%),
+    linear-gradient(180deg, rgba(18, 18, 26, 0.92), rgba(10, 10, 14, 0.96)),
+    var(--color-bg-card);
+  padding: clamp(1rem, 2.7vw, 1.6rem);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.architecture-diagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 78%);
+  opacity: 0.55;
+}
+
+.architecture-diagram::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, rgba(230, 57, 70, 0.08), transparent 18%, transparent 82%, rgba(230, 57, 70, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 26%);
+  pointer-events: none;
+}
+
+.architecture-flow-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.architecture-card {
+  --layer-delay: 0ms;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+    rgba(11, 11, 15, 0.82);
+  padding: clamp(1rem, 2vw, 1.25rem);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+  transition-delay: var(--layer-delay);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+}
+
+.architecture-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 1rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.42), transparent);
+}
+
+.architecture-card:hover {
+  border-color: rgba(230, 57, 70, 0.22);
+  transform: translateY(-0.125rem);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.3);
+}
+
+.architecture-card-core {
+  border-color: rgba(230, 57, 70, 0.26);
+  background:
+    radial-gradient(ellipse 18rem 12rem at 50% 0%, rgba(230, 57, 70, 0.12), transparent 70%),
+    linear-gradient(150deg, rgba(230, 57, 70, 0.09), rgba(12, 12, 17, 0.94) 42%, rgba(255, 255, 255, 0.025)),
+    rgba(11, 11, 15, 0.88);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(230, 57, 70, 0.09);
+}
+
+.architecture-card-core::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(230, 57, 70, 0);
+  pointer-events: none;
+}
+
+.architecture-pre-reveal .architecture-card {
+  opacity: 0;
+  transform: translateY(0.875rem) scale(0.985);
+}
+
+.architecture-visible .architecture-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.architecture-visible .architecture-card-core::after {
+  animation: architecture-core-pulse 1.25s ease-out 660ms 1;
+}
+
+.architecture-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.architecture-layer-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  min-width: 2.35rem;
+  border: 1px solid rgba(230, 57, 70, 0.22);
+  border-radius: 0.7rem;
+  background: rgba(230, 57, 70, 0.075);
+  color: rgba(255, 146, 154, 0.95);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.architecture-icon-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  width: 2.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(230, 57, 70, 0.82);
+}
+
+.architecture-card-core .architecture-icon-shell {
+  border-color: rgba(230, 57, 70, 0.22);
+  background: rgba(230, 57, 70, 0.1);
+  color: rgb(255, 164, 171);
+}
+
+.architecture-layer-title {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  font-weight: 650;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.architecture-layer-role {
+  margin-top: 0.4rem;
+  min-height: 2.3rem;
+  color: var(--color-text-muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.architecture-layer-items {
+  display: grid;
+  gap: 0.48rem;
+  margin-top: 1rem;
+}
+
+.architecture-layer-item {
+  position: relative;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 0.65rem;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 0.54rem 0.62rem 0.54rem 1.62rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.architecture-layer-item::before {
+  content: "";
+  position: absolute;
+  left: 0.62rem;
+  top: 50%;
+  width: 0.45rem;
+  height: 1px;
+  background: rgba(230, 57, 70, 0.65);
+  transform: translateY(-50%);
+}
+
+.architecture-card-core .architecture-layer-item {
+  border-color: rgba(230, 57, 70, 0.12);
+  background: rgba(230, 57, 70, 0.045);
+  color: rgba(228, 228, 235, 0.82);
+}
+
+.architecture-connector {
+  --signal-delay: 0ms;
+  position: relative;
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.42rem;
+  padding-block: 0.1rem;
+}
+
+.architecture-connector-label {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(230, 57, 70, 0.16);
+  border-radius: 999px;
+  background: rgba(11, 11, 15, 0.9);
+  padding: 0.22rem 0.52rem;
+  color: rgba(255, 146, 154, 0.78);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 650;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.architecture-signal-line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 3.2rem;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgba(230, 57, 70, 0.08), rgba(230, 57, 70, 0.48), rgba(230, 57, 70, 0.08));
+}
+
+.architecture-signal-line::before {
+  content: "";
+  position: absolute;
+  top: -42%;
+  left: 0;
+  width: 100%;
+  height: 42%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 102, 115, 0.95), transparent);
+  opacity: 0;
+}
+
+.architecture-signal-line::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-right: 1px solid rgba(255, 146, 154, 0.8);
+  border-bottom: 1px solid rgba(255, 146, 154, 0.8);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.architecture-visible .architecture-signal-line::before {
+  animation: architecture-signal-vertical 2.7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  animation-delay: var(--signal-delay);
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .architecture-flow-grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(4.25rem, 5.6rem)
+      minmax(0, 1.08fr)
+      minmax(4.25rem, 5.6rem)
+      minmax(0, 1fr);
+    gap: clamp(0.45rem, 0.8vw, 0.75rem);
+    align-items: center;
+  }
+
+  .architecture-visible .architecture-card-core {
+    transform: translateY(-0.35rem) scale(1.025);
+  }
+
+  .architecture-card-core:hover {
+    transform: translateY(-0.5rem) scale(1.025);
+  }
+
+  .architecture-connector {
+    align-self: center;
+    gap: 0.55rem;
+    padding-block: 0;
+  }
+
+  .architecture-signal-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(230, 57, 70, 0.08), rgba(230, 57, 70, 0.5), rgba(230, 57, 70, 0.08));
+  }
+
+  .architecture-signal-line::before {
+    top: 0;
+    left: -42%;
+    width: 42%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 102, 115, 0.95), transparent);
+  }
+
+  .architecture-signal-line::after {
+    bottom: auto;
+    left: auto;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  .architecture-visible .architecture-signal-line::before {
+    animation-name: architecture-signal-horizontal;
+  }
+}
+
+@keyframes architecture-signal-horizontal {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  14%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(340%);
+    opacity: 0;
+  }
+}
+
+@keyframes architecture-signal-vertical {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  14%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(340%);
+    opacity: 0;
+  }
+}
+
+@keyframes architecture-core-pulse {
+  0% {
+    border-color: rgba(230, 57, 70, 0);
+    box-shadow: inset 0 0 0 rgba(230, 57, 70, 0);
+  }
+  42% {
+    border-color: rgba(230, 57, 70, 0.34);
+    box-shadow: inset 0 0 38px rgba(230, 57, 70, 0.075);
+  }
+  100% {
+    border-color: rgba(230, 57, 70, 0);
+    box-shadow: inset 0 0 0 rgba(230, 57, 70, 0);
+  }
+}
+
 /* â”€â”€ Section header pattern â”€â”€ */
 
 .section-eyebrow {
@@ -762,6 +1142,12 @@ body {
   50% { opacity: 0; }
 }
 
+@keyframes terminal-scan {
+  0%, 65% { transform: translateX(-100%); opacity: 0; }
+  75% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 8px rgba(230, 57, 70, 0.06); }
   50% { box-shadow: 0 0 20px rgba(230, 57, 70, 0.12); }
@@ -814,7 +1200,7 @@ body {
 }
 
 .hero-shell {
-  min-height: calc(100svh - 57px);
+  min-height: calc(100svh - var(--navbar-height));
   display: flex;
   align-items: center;
   padding-block: clamp(2.5rem, 6vh, 4.5rem);

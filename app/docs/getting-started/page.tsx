@@ -36,20 +36,14 @@ export default function GettingStartedPage() {
         Install Laraskills
       </h2>
       <div className="mt-4 max-w-xl">
-        <CliCommandCard
-          command="npm install -g laraskills"
-          label="Install"
-        />
+        <CliCommandCard command="npm install -g laraskills" label="Install" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold text-text">
         Quick verification
       </h2>
       <div className="mt-4 max-w-xl">
-        <CliCommandCard
-          command="laraskills doctor"
-          label="Verify"
-        />
+        <CliCommandCard command="laraskills doctor" label="Verify" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold text-text">

@@ -75,10 +75,7 @@ export default function OpenCodeSetupPage() {
         confirm the installation:
       </p>
       <div className="mt-4 max-w-xl">
-        <CliCommandCard
-          command="laraskills doctor"
-          label="Verify"
-        />
+        <CliCommandCard command="laraskills doctor" label="Verify" />
       </div>
     </>
   );

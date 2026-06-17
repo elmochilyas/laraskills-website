@@ -1,31 +1,90 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Section from "@/components/Section";
 import PageContainer from "@/components/PageContainer";
-import MetricsCard from "@/components/MetricsCard";
 import metricsData from "@/data/homepage-metrics.json";
 
-function formatDisplay(value: number): string {
-  return value.toLocaleString("en-US");
-}
+/* ── Icons ── */
 
-function CountUpValue({ valueStr, className }: { valueStr: string; className?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
+const DatabaseIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <ellipse cx="12" cy="5" rx="9" ry="3" />
+    <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+    <path d="M3 12A9 3 0 0 0 21 12" />
+  </svg>
+);
+
+const BracesIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="m16 18 2 2 2-2" />
+    <path d="M8 22H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h3" />
+    <path d="M16 2h3a3 3 0 0 1 3 3v3.5" />
+    <path d="M22 11V5a2 2 0 0 0-2-2h-3" />
+    <path d="M2 13v6a2 2 0 0 0 2 2h3" />
+  </svg>
+);
+
+const ShieldCheckIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+const BotIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 8V4H8" />
+    <rect width="16" height="12" x="4" y="8" rx="2" />
+    <path d="M2 14h2" />
+    <path d="M20 14h2" />
+    <path d="M15 13v2" />
+    <path d="M9 13v2" />
+  </svg>
+);
+
+const NetworkIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="16" y="16" width="6" height="6" rx="1" />
+    <rect x="2" y="16" width="6" height="6" rx="1" />
+    <rect x="9" y="2" width="6" height="6" rx="1" />
+    <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+    <path d="M12 12V8" />
+  </svg>
+);
+
+const PlugIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22v-5" />
+    <path d="M9 8V2" />
+    <path d="M15 8V2" />
+    <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" />
+  </svg>
+);
+
+const TerminalSquareIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect width="18" height="18" x="3" y="3" rx="2" />
+    <path d="m7 11 2 2-2 2" />
+    <path d="M11 15h4" />
+  </svg>
+);
+
+/* ── Sub-components ── */
+
+function CountUpValue({ valueStr }: { valueStr: string }) {
+  const [count, setCount] = useState(0);
   const [entered, setEntered] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
   const target = parseInt(valueStr.replace(/[^0-9]/g, ""), 10);
   const suffix = valueStr.replace(/[0-9,]/g, "");
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
     if (!el || entered) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setEntered(true);
-      },
-      { threshold: 0.15 }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setEntered(true);
+    }, { threshold: 0.1 });
     observer.observe(el);
     return () => observer.disconnect();
   }, [entered]);
@@ -33,12 +92,12 @@ function CountUpValue({ valueStr, className }: { valueStr: string; className?: s
   useEffect(() => {
     if (!entered) return;
     let frame = 0;
-    const total = 55;
+    const total = 60;
     let rafId: number;
     const animate = () => {
       frame++;
       const t = Math.min(frame / total, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
+      const eased = 1 - Math.pow(1 - t, 4); // Quart easing
       setCount(Math.round(eased * target));
       if (frame < total) rafId = requestAnimationFrame(animate);
     };
@@ -47,397 +106,317 @@ function CountUpValue({ valueStr, className }: { valueStr: string; className?: s
   }, [entered, target]);
 
   return (
-    <span ref={ref} className={className}>
-      {formatDisplay(count)}{suffix}
+    <span ref={ref}>
+      {count.toLocaleString("en-US")}{suffix}
     </span>
   );
 }
 
-function StepGroup({
-  stepActive,
-  label,
-  accent,
-  children,
-}: {
-  stepActive: boolean;
-  label: string;
-  accent: "brand" | "accent";
-  children: React.ReactNode;
-}) {
-  const accentClass = accent === "brand" ? "eco-step-group-brand" : "eco-step-group-accent";
-
-  return (
-    <div
-      className={`eco-step-group ${accentClass} ${
-        stepActive ? "eco-step-visible" : "eco-step-hidden"
-      }`}
-    >
-      <div className="eco-step-heading">
-        <div className="eco-step-marker" aria-hidden="true" />
-        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted font-mono">
-          {label}
-        </span>
-        <div className="eco-step-heading-line" aria-hidden="true" />
-      </div>
-      <div className="eco-step-grid">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
+const steps = [
+  {
+    id: 1,
+    title: "Knowledge Core",
+    description: "The fundamental engineering knowledge and rules that drive consistent output.",
+    accent: "brand",
+    metrics: [
+      {
+        id: "skills",
+        icon: <BracesIcon className="size-5" />,
+        value: metricsData.metrics[0].value,
+        label: metricsData.metrics[0].label,
+        desc: "Implementation skills across key Laravel engineering tasks and patterns."
+      },
+      {
+        id: "rules",
+        icon: <ShieldCheckIcon className="size-5" />,
+        value: metricsData.metrics[1].value,
+        label: metricsData.metrics[1].label,
+        desc: "Guardrails that improve consistency and reduce unsafe output."
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Ecosystem Coverage",
+    description: "Broad coverage across Laravel engineering domains and agent personas.",
+    accent: "accent",
+    metrics: [
+      {
+        id: "agents",
+        icon: <BotIcon className="size-5" />,
+        value: metricsData.metrics[2].value,
+        label: metricsData.metrics[2].label,
+        desc: "Structured agent behaviors for coding and retrieval workflows."
+      },
+      {
+        id: "domains",
+        icon: <NetworkIcon className="size-5" />,
+        value: metricsData.metrics[3].value,
+        label: metricsData.metrics[3].label,
+        desc: "Coverage across architecture, validation, APIs, queues, testing, and more."
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Integration Layer",
+    description: "Secure interfaces that connect the knowledge base to your engineering tools.",
+    accent: "brand",
+    metrics: [
+      {
+        id: "mcp",
+        icon: <PlugIcon className="size-5" />,
+        value: metricsData.metrics[5].value,
+        label: metricsData.metrics[5].label,
+        desc: "Safe protocol tools that expose LaraSkills intelligence to coding agents."
+      },
+      {
+        id: "harnesses",
+        icon: <TerminalSquareIcon className="size-5" />,
+        value: metricsData.metrics[6].value,
+        label: metricsData.metrics[6].label,
+        desc: "Compatible with multiple agent environments and developer workflows."
+      }
+    ]
+  }
+];
 
 export default function EcosystemSection() {
   const m = metricsData.metrics;
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [step, setStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(1);
 
-  useEffect(() => {
+  const updateActiveStep = useCallback(() => {
     const el = wrapperRef.current;
     if (!el) return;
 
-    let rafId = 0;
-    const step2Start = 0.28;
-    const step3Start = 0.52;
-
-    const getStickyOffset = () => {
-      const value = getComputedStyle(document.documentElement)
-        .getPropertyValue("--navbar-height")
-        .trim();
-      const parsed = Number.parseFloat(value);
-      return Number.isFinite(parsed) ? parsed : 56;
-    };
-
-    const updateStep = () => {
-      rafId = 0;
-
-      const rect = el.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const stickyOffset = getStickyOffset();
-      const stickyHeight = Math.max(viewportHeight - stickyOffset, 1);
-      const scrollRange = Math.max(rect.height - stickyHeight, 1);
-      const progress = Math.min(Math.max((stickyOffset - rect.top) / scrollRange, 0), 1);
-      const nextStep = progress >= step3Start ? 3 : progress >= step2Start ? 2 : 1;
-
-      setStep((currentStep) => (currentStep === nextStep ? currentStep : nextStep));
-    };
-
-    const requestUpdate = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(updateStep);
-    };
-
-    requestUpdate();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      if (rafId) window.cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-    };
+    const rect = el.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const scrollRange = rect.height - viewportHeight;
+    
+    // Calculate progress (0 to 1) based on how much of the section has been scrolled through
+    const progress = Math.max(0, Math.min(1, (-rect.top) / scrollRange));
+    
+    let step = 1;
+    if (progress > 0.66) step = 3;
+    else if (progress > 0.33) step = 2;
+    
+    setActiveStep(step);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", updateActiveStep, { passive: true });
+    window.addEventListener("resize", updateActiveStep);
+    updateActiveStep();
+    return () => {
+      window.removeEventListener("scroll", updateActiveStep);
+      window.removeEventListener("resize", updateActiveStep);
+    };
+  }, [updateActiveStep]);
+
   return (
-    <Section variant="alt" className="!py-0">
-      <div ref={wrapperRef} className="eco-scroll-wrapper">
+    <Section variant="alt" className="!p-0 relative overflow-visible">
+      <div ref={wrapperRef} className="relative lg:min-h-[300vh]">
         <div className="eco-atmosphere" aria-hidden="true" />
-
-        {/* Desktop: sticky storytelling container */}
-        <div className="hidden lg:block eco-sticky-container">
-          <PageContainer>
-            <div className="eco-sticky-inner">
-              <div className="eco-panel">
-                <div className="eco-section-heading">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="h-px w-6 bg-brand/50" />
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted font-mono">
-                      Scale
-                    </span>
-                  </div>
-                  <h2 className="text-2xl lg:text-[2.4rem] font-display font-bold tracking-[-0.04em] leading-[0.98]">
-                    LaraSkills <span className="text-brand">at a glance</span>
-                  </h2>
-                  <p className="mt-2 text-text-muted leading-relaxed text-sm">
-                    The LaraSkills knowledge system today
-                  </p>
-                </div>
-
-                <div className="eco-dashboard-grid">
-                  <div className="eco-feature-column">
-                    <div className="card-featured eco-feature-card">
-                      <div className="eco-feature-content">
-                        <svg
-                          aria-hidden="true"
-                          viewBox="0 0 24 24"
-                          className="size-7 mb-5 text-brand/55"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M4 7v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M4 7l8 5 8-5" />
-                        </svg>
-                        <CountUpValue
-                          valueStr={m[4].value}
-                          className="eco-feature-number font-display font-bold tracking-[-0.07em] text-white block leading-none mb-3"
-                        />
-                        <span className="text-text-muted text-base font-medium block leading-snug">
-                          Knowledge units
-                        </span>
-                        <div className="my-5 h-px bg-gradient-to-r from-brand/45 via-white/10 to-transparent" />
-                        <div className="eco-badge mb-3">Core retrieval foundation</div>
-                        <p className="max-w-[28rem] text-text-dim text-sm leading-relaxed">
-                          Curated Laravel knowledge chunks that ground AI coding agents with precise,
-                          framework-aware context.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={`eco-story-rail eco-story-rail-step-${step}`} aria-hidden="true">
-                    <div className="eco-rail-line" />
-                  </div>
-
-                  <div className="eco-story-column">
-                    <div className="eco-story-card">
-                      {step === 1 && (
-                        <div key="g1" className="eco-step-group-enter">
-                          <StepGroup stepActive={true} label="Knowledge Core" accent="brand">
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "0ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card"
-                                value={m[0].value}
-                                label={m[0].label}
-                                metricId={m[0].id}
-                                description="Implementation skills across key Laravel engineering tasks and patterns."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "120ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card"
-                                value={m[1].value}
-                                label={m[1].label}
-                                metricId={m[1].id}
-                                description="Guardrails that improve consistency and reduce unsafe output."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                          </StepGroup>
-                        </div>
-                      )}
-                      {step === 2 && (
-                        <div key="g2" className="eco-step-group-enter">
-                          <StepGroup stepActive={true} label="Ecosystem Coverage" accent="accent">
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "0ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card eco-metric-card-accent"
-                                value={m[2].value}
-                                label={m[2].label}
-                                metricId={m[2].id}
-                                description="Structured agent behaviors for coding and retrieval workflows."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "120ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card eco-metric-card-accent"
-                                value={m[3].value}
-                                label={m[3].label}
-                                metricId={m[3].id}
-                                description="Coverage across architecture, validation, APIs, queues, testing, and more."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                          </StepGroup>
-                        </div>
-                      )}
-                      {step === 3 && (
-                        <div key="g3" className="eco-step-group-enter">
-                          <StepGroup stepActive={true} label="Integration Layer" accent="brand">
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "0ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card"
-                                value={m[5].value}
-                                label={m[5].label}
-                                metricId={m[5].id}
-                                description="Safe protocol tools that expose LaraSkills intelligence to coding agents."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                            <div className="eco-step-card eco-step-card-visible" style={{ transitionDelay: "120ms" }}>
-                              <MetricsCard
-                                className="eco-metric-card"
-                                value={m[6].value}
-                                label={m[6].label}
-                                metricId={m[6].id}
-                                description="Compatible with multiple agent environments and developer workflows."
-                                compact
-                                forceVisible={true}
-                              />
-                            </div>
-                          </StepGroup>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+        
+        {/* Sticky container for desktop */}
+        <div className="hidden lg:flex sticky top-0 h-screen items-center">
+          <PageContainer className="w-full">
+            <div className="relative grid grid-cols-12 gap-8 items-center bg-[#0d0d12]/80 backdrop-blur-xl border border-white/5 rounded-[2.5rem] p-10 lg:p-14 shadow-2xl overflow-hidden">
+              
+              {/* Decorative Scanline */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-brand/30 to-transparent top-1/4 animate-[scan_8s_linear_infinite]" />
               </div>
-            </div>
-          </PageContainer>
 
-          {/* Progress indicator */}
-          <div className="eco-progress-nav" aria-hidden="true">
-            <div className="eco-progress-track" aria-hidden="true" />
-            <div className={`eco-progress-dot ${step >= 1 ? "eco-progress-dot-active" : "eco-progress-dot-inactive"}`} />
-            <div className={`eco-progress-dot ${step >= 2 ? "eco-progress-dot-active-accent" : "eco-progress-dot-inactive"}`} />
-            <div className={`eco-progress-dot ${step >= 3 ? "eco-progress-dot-active" : "eco-progress-dot-inactive"}`} />
-          </div>
-        </div>
-
-        {/* Mobile/tablet: static stacked layout */}
-        <div className="lg:hidden">
-          <PageContainer>
-            <div className="pt-16 md:pt-24 pb-8">
-              <div className="eco-mobile-heading">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="h-px w-6 bg-brand/50" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted font-mono">
-                    Scale
-                  </span>
-                </div>
-                <h2 className="text-3xl font-display font-bold tracking-[-0.04em] leading-none">
+              {/* Left Column: System Status */}
+              <div className="col-span-5 relative z-10">
+                <div className="section-eyebrow !mb-4">Scale</div>
+                <h2 className="section-title !text-[2.6rem] !mb-2">
                   LaraSkills <span className="text-brand">at a glance</span>
                 </h2>
-                <p className="mt-2 text-text-muted leading-relaxed text-sm">
+                <p className="section-lead !text-base mb-10">
                   The LaraSkills knowledge system today
                 </p>
-              </div>
 
-              <div className="card-featured eco-feature-card eco-feature-card-mobile">
-                <div className="eco-feature-content">
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    className="size-7 mb-5 text-brand/55"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 7v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M4 7l8 5 8-5" />
-                  </svg>
-                  <CountUpValue
-                    valueStr={m[4].value}
-                    className="eco-feature-number font-display font-bold tracking-[-0.07em] text-white block leading-none mb-3"
-                  />
-                  <span className="text-text-muted text-base font-medium block leading-snug mb-3">
-                    Knowledge units
-                  </span>
-                  <div className="eco-badge mb-3">Core retrieval foundation</div>
-                  <p className="text-text-dim text-sm leading-relaxed">
-                    Curated Laravel knowledge chunks that ground AI coding agents with precise,
-                    framework-aware context.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="eco-mobile-groups pb-16 md:pb-24">
-              <div className="eco-mobile-group eco-step-group-brand">
-                <div className="eco-mobile-group-heading">
-                  <span className="eco-step-marker" aria-hidden="true" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-dim font-mono">
-                    Knowledge Core
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <MetricsCard
-                    className="eco-metric-card"
-                    value={m[0].value}
-                    label={m[0].label}
-                    metricId={m[0].id}
-                    description="Implementation skills across key Laravel engineering tasks and patterns."
-                    compact
-                  />
-                  <MetricsCard
-                    className="eco-metric-card"
-                    value={m[1].value}
-                    label={m[1].label}
-                    metricId={m[1].id}
-                    description="Guardrails that improve consistency and reduce unsafe output."
-                    compact
-                  />
+                <div className="card-featured p-8 border-brand/20 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <DatabaseIcon className="size-24 text-brand" />
+                  </div>
+                  
+                  <div className="relative z-10">
+                    <div className="eco-badge mb-4">Core retrieval foundation</div>
+                    <div className="font-display font-bold text-6xl xl:text-7xl text-white tracking-tight mb-2">
+                      <CountUpValue valueStr={m[4].value} />
+                    </div>
+                    <div className="text-text-muted text-lg font-medium mb-6">Knowledge units</div>
+                    <p className="text-text-dim text-sm leading-relaxed max-w-sm">
+                      Curated Laravel knowledge chunks that ground AI coding agents with precise, 
+                      framework-aware context.
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="eco-mobile-group eco-step-group-accent">
-                <div className="eco-mobile-group-heading">
-                  <span className="eco-step-marker" aria-hidden="true" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-dim font-mono">
-                    Ecosystem Coverage
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <MetricsCard
-                    className="eco-metric-card eco-metric-card-accent"
-                    value={m[2].value}
-                    label={m[2].label}
-                    metricId={m[2].id}
-                    description="Structured agent behaviors for coding and retrieval workflows."
-                    compact
-                  />
-                  <MetricsCard
-                    className="eco-metric-card eco-metric-card-accent"
-                    value={m[3].value}
-                    label={m[3].label}
-                    metricId={m[3].id}
-                    description="Coverage across architecture, validation, APIs, queues, testing, and more."
-                    compact
-                  />
+              {/* Right Column: Step Storytelling */}
+              <div className="col-span-6 col-start-7 relative z-10">
+                <div className="relative min-h-[360px] flex flex-col justify-center">
+                  {steps.map((step) => {
+                    const isActive = activeStep === step.id;
+                    return (
+                      <div 
+                        key={step.id}
+                        className={`transition-all duration-700 cubic-bezier(0.22, 1, 0.36, 1) absolute inset-0 flex flex-col justify-center ${
+                          isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-[0.98] pointer-events-none"
+                        }`}
+                      >
+                        <div className="mb-8">
+                          <h3 className={`font-display font-bold text-3xl mb-3 ${step.accent === "brand" ? "text-brand" : "text-accent"}`}>
+                            {step.title}
+                          </h3>
+                          <p className="text-text-muted text-base max-w-md leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-5">
+                          {step.metrics.map((metric, i) => (
+                            <div 
+                              key={metric.id}
+                              className="bg-bg-card/60 border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-colors group"
+                            >
+                              <div className={`mb-4 flex items-center justify-center size-10 rounded-xl bg-white/5 border border-white/5 transition-colors ${step.accent === "brand" ? "group-hover:text-brand group-hover:border-brand/30" : "group-hover:text-accent group-hover:border-accent/30"}`}>
+                                {metric.icon}
+                              </div>
+                              <div className="font-display font-bold text-3xl text-white mb-1">
+                                {metric.value}
+                              </div>
+                              <div className="text-text-muted text-xs font-semibold uppercase tracking-wider mb-3">
+                                {metric.label}
+                              </div>
+                              <p className="text-text-dim text-xs leading-relaxed">
+                                {metric.desc}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              <div className="eco-mobile-group eco-step-group-brand">
-                <div className="eco-mobile-group-heading">
-                  <span className="eco-step-marker" aria-hidden="true" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-dim font-mono">
-                    Integration Layer
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <MetricsCard
-                    className="eco-metric-card"
-                    value={m[5].value}
-                    label={m[5].label}
-                    metricId={m[5].id}
-                    description="Safe protocol tools that expose LaraSkills intelligence to coding agents."
-                    compact
-                  />
-                  <MetricsCard
-                    className="eco-metric-card"
-                    value={m[6].value}
-                    label={m[6].label}
-                    metricId={m[6].id}
-                    description="Compatible with multiple agent environments and developer workflows."
-                    compact
-                  />
-                </div>
+              {/* Progress Rail (far right) */}
+              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 py-8">
+                <div className="absolute inset-y-0 w-px bg-white/5" />
+                {steps.map((step) => {
+                  const isActive = activeStep === step.id;
+                  const isCompleted = activeStep > step.id;
+                  return (
+                    <button
+                      key={step.id}
+                      onClick={() => {
+                        const wrapper = wrapperRef.current;
+                        if (!wrapper) return;
+                        const targetPos = wrapper.offsetTop + (step.id - 1) * (window.innerHeight);
+                        window.scrollTo({ top: targetPos, behavior: "smooth" });
+                      }}
+                      className="group relative flex items-center justify-center p-2"
+                    >
+                      <span className="sr-only">{step.title}</span>
+                      <div className={`relative z-10 size-2.5 rounded-full transition-all duration-500 border-2 ${
+                        isActive 
+                          ? step.accent === "brand" ? "bg-brand border-brand shadow-[0_0_12px_rgba(230,57,70,0.5)] scale-125" : "bg-accent border-accent shadow-[0_0_12px_rgba(45,212,191,0.5)] scale-125"
+                          : isCompleted ? "bg-white/40 border-white/40" : "bg-white/10 border-white/10 group-hover:border-white/30"
+                      }`} />
+                      
+                      <div className={`absolute right-full mr-4 whitespace-nowrap text-[10px] font-mono font-bold uppercase tracking-widest transition-all duration-300 ${
+                        isActive ? "opacity-100 -translate-x-0 text-text-muted" : "opacity-0 -translate-x-2 text-text-dim"
+                      }`}>
+                        {step.title.split(' ')[0]}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
+
             </div>
           </PageContainer>
         </div>
 
+        {/* Mobile: simple stacked dashboard */}
+        <div className="lg:hidden">
+          <PageContainer className="py-20 flex flex-col gap-12">
+            <div className="space-y-4">
+              <div className="section-eyebrow">Scale</div>
+              <h2 className="section-title text-3xl">
+                LaraSkills <span className="text-brand">at a glance</span>
+              </h2>
+              <p className="text-text-muted leading-relaxed">
+                The LaraSkills knowledge system today
+              </p>
+            </div>
+
+            <div className="card-featured p-8 border-brand/20 relative overflow-hidden">
+              <div className="eco-badge mb-4">Core retrieval foundation</div>
+              <div className="font-display font-bold text-6xl text-white tracking-tight mb-2">
+                <CountUpValue valueStr={m[4].value} />
+              </div>
+              <div className="text-text-muted text-lg font-medium mb-6">Knowledge units</div>
+              <p className="text-text-dim text-sm leading-relaxed">
+                Curated Laravel knowledge chunks that ground AI coding agents with precise, 
+                framework-aware context.
+              </p>
+            </div>
+
+            <div className="space-y-16">
+              {steps.map((step) => (
+                <div key={step.id} className="space-y-8">
+                  <div className="relative pl-6">
+                    <div className={`absolute left-0 inset-y-0 w-1 rounded-full ${step.accent === "brand" ? "bg-brand" : "bg-accent"}`} />
+                    <h3 className={`font-display font-bold text-2xl mb-2 ${step.accent === "brand" ? "text-brand" : "text-accent"}`}>
+                      {step.title}
+                    </h3>
+                    <p className="text-text-muted text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {step.metrics.map((metric) => (
+                      <div 
+                        key={metric.id}
+                        className="bg-bg-card/40 border border-white/5 rounded-2xl p-6"
+                      >
+                        <div className="mb-4 flex items-center justify-center size-10 rounded-xl bg-white/5 border border-white/5 text-text-muted">
+                          {metric.icon}
+                        </div>
+                        <div className="font-display font-bold text-3xl text-white mb-1">
+                          {metric.value}
+                        </div>
+                        <div className="text-text-muted text-xs font-semibold uppercase tracking-wider mb-3">
+                          {metric.label}
+                        </div>
+                        <p className="text-text-dim text-xs leading-relaxed">
+                          {metric.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </PageContainer>
+        </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes scan {
+          from { transform: translateY(0); }
+          to { transform: translateY(400px); }
+        }
+      `}</style>
     </Section>
   );
 }

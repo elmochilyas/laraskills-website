@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- LaraSkills Mark: Precision Engineering & AI Layers -->
+  
+  <!-- Secondary Layer (Depth) -->
+  <rect x="14" y="34" width="26" height="8" rx="1.5" fill="#BA2D39" />
+  
+  <!-- Primary Vertical (Operating Layer) -->
+  <rect x="8" y="6" width="10" height="36" rx="1.5" fill="#E63946" />
+  
+  <!-- Primary Horizontal (Knowledge Base) -->
+  <rect x="18" y="32" width="22" height="10" rx="1.5" fill="#E63946" />
+  
+  <!-- The "Skill" Spark (AI Intelligence) -->
+  <path d="M13 22.5L15.5 25L13 27.5L10.5 25L13 22.5Z" fill="white" />
+  
+  <!-- Precision Detail: Connection Node -->
+  <rect x="18" y="32" width="2" height="2" fill="#BA2D39" />
+</svg>
