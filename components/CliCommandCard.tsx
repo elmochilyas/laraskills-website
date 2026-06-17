@@ -5,9 +5,9 @@ import { useState, useCallback } from "react";
 type CliCommandCardProps = {
   command: string;
   label: string;
-  index: number;
-  isActive: boolean;
-  onHover: (index: number) => void;
+  index?: number;
+  isActive?: boolean;
+  onHover?: (index: number) => void;
 };
 
 function LabelBlock({ text }: { text: string }) {
@@ -26,9 +26,9 @@ function LabelBlock({ text }: { text: string }) {
 export default function CliCommandCard({
   command,
   label,
-  index,
-  isActive,
-  onHover,
+  index = 0,
+  isActive = false,
+  onHover = () => {},
 }: CliCommandCardProps) {
   const [copied, setCopied] = useState(false);
 
