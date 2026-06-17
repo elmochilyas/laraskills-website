@@ -78,6 +78,9 @@ export default function OpenCodeSetupPage() {
         <CliCommandCard
           command="laraskills doctor"
           label="Verify"
+          index={0}
+          isActive={false}
+          onHover={() => {}}
         />
       </div>
     </>

@@ -35,6 +35,9 @@ export default function InstallationPage() {
         <CliCommandCard
           command="npm install -g laraskills"
           label="npm"
+          index={0}
+          isActive={false}
+          onHover={() => {}}
         />
       </div>
 
@@ -48,6 +51,9 @@ export default function InstallationPage() {
         <CliCommandCard
           command="git clone https://github.com/elmochilyas/laraskills.git && cd laraskills && npm install"
           label="Source"
+          index={0}
+          isActive={false}
+          onHover={() => {}}
         />
       </div>
 
@@ -61,6 +67,9 @@ export default function InstallationPage() {
         <CliCommandCard
           command="npm update -g laraskills"
           label="Update"
+          index={0}
+          isActive={false}
+          onHover={() => {}}
         />
       </div>
 
@@ -74,6 +83,9 @@ export default function InstallationPage() {
         <CliCommandCard
           command="laraskills doctor"
           label="Doctor"
+          index={0}
+          isActive={false}
+          onHover={() => {}}
         />
       </div>
     </>

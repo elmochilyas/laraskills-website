@@ -69,7 +69,7 @@ export default function CliPage() {
       </p>
 
       <div className="mt-10 space-y-8">
-        {commands.map((cmd) => (
+        {commands.map((cmd, index) => (
           <div key={cmd.name}>
             <h2 className="text-xl font-semibold text-text mb-2 capitalize">
               {cmd.name}
@@ -78,7 +78,13 @@ export default function CliPage() {
               {cmd.description}
             </p>
             <div className="max-w-xl">
-              <CliCommandCard command={cmd.command} label={cmd.name} />
+              <CliCommandCard
+                command={cmd.command}
+                label={cmd.name}
+                index={index}
+                isActive={false}
+                onHover={() => {}}
+              />
             </div>
           </div>
         ))}
