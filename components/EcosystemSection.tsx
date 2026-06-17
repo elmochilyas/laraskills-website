@@ -281,7 +281,7 @@ export default function EcosystemSection() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-5">
-                          {step.metrics.map((metric, i) => (
+                          {step.metrics.map((metric) => (
                             <div 
                               key={metric.id}
                               className="bg-bg-card/60 border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-colors group"

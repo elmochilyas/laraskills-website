@@ -22,12 +22,10 @@ export default function IntegrationGroupCard({ title, description, tools }: Inte
       <p className="mt-2 text-sm text-text-muted leading-relaxed">
         {description}
       </p>
-      <div className="mt-4 flex flex-wrap items-center gap-3">
+      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3">
         {tools.map((tool, i) => (
-          <div key={i} className="inline-flex items-center gap-2">
-            {tool.icon ? (
-              <BrandIcon iconKey={tool.icon} />
-            ) : null}
+          <div key={i} className="inline-flex items-center gap-2.5">
+            <BrandIcon iconKey={tool.icon} />
             <span className="text-sm text-text">{tool.name}</span>
           </div>
         ))}
