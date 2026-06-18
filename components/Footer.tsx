@@ -38,13 +38,13 @@ function ArrowUpIcon() {
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-border/40 bg-bg-alt overflow-hidden">
+    <footer className="relative bg-bg overflow-hidden">
       {/* Top brand glow */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/15 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
       <div className="absolute inset-x-0 top-0 h-48 bg-[radial-gradient(ellipse_at_center_top,rgba(230,57,70,0.025)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative mx-auto max-w-[1200px] px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12">
+      <div className="relative mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-12">
           {/* Brand column */}
           <div className="lg:col-span-4">
             <Link
@@ -54,15 +54,15 @@ export default function Footer() {
             >
               <LaraSkillsLogo className="h-8 w-auto md:h-10" />
             </Link>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-text-muted">
+            <p className="mt-3 max-w-64 text-sm leading-relaxed text-text-muted">
               Laravel-focused AI coding-agent operating layer and engineering knowledge system.
             </p>
-            <div className="mt-5 flex gap-3">
+            <div className="mt-4 flex gap-3">
               <a
                 href="https://github.com/elmochilyas/laraskills"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-border/50 bg-bg-card text-text-dim transition-all duration-200 hover:border-brand/20 hover:bg-brand-subtle hover:text-brand"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-bg-card text-text-dim transition-all duration-200 hover:border-brand/30 hover:bg-brand-subtle hover:text-brand"
                 aria-label="GitHub"
               >
                 <GitHubIcon />
@@ -73,7 +73,7 @@ export default function Footer() {
           {/* Product links */}
           <div className="lg:col-span-3">
             <h4 className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-text-dim">
-              <span className="inline-block h-px w-3 bg-brand/40" />
+              <span className="inline-block h-0.5 w-4 bg-brand/50" />
               Product
             </h4>
             <nav className="flex flex-col gap-3">
@@ -81,7 +81,7 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-text-muted transition-all duration-200 hover:translate-x-0.5 hover:text-brand"
+                  className="text-sm text-text-muted transition-all duration-200 hover:translate-x-1 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -92,7 +92,7 @@ export default function Footer() {
           {/* Resources links */}
           <div className="lg:col-span-3">
             <h4 className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-text-dim">
-              <span className="inline-block h-px w-3 bg-brand/40" />
+              <span className="inline-block h-0.5 w-4 bg-brand/50" />
               Resources
             </h4>
             <nav className="flex flex-col gap-3">
@@ -100,7 +100,7 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-text-muted transition-all duration-200 hover:translate-x-0.5 hover:text-brand"
+                  className="text-sm text-text-muted transition-all duration-200 hover:translate-x-1 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
           {/* Connect links */}
           <div className="lg:col-span-2">
             <h4 className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-text-dim">
-              <span className="inline-block h-px w-3 bg-brand/40" />
+              <span className="inline-block h-0.5 w-4 bg-brand/50" />
               Connect
             </h4>
             <nav className="flex flex-col gap-3">
@@ -121,10 +121,10 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-text-muted transition-all duration-200 hover:translate-x-0.5 hover:text-brand"
+                  className="text-sm font-medium text-text-muted transition-all duration-200 hover:translate-x-1 hover:text-white"
                 >
                   {link.label}
-                  <span className="ml-1 text-[10px] opacity-40">↗</span>
+                  <span className="ml-1 text-[10px] opacity-60">↗</span>
                 </a>
               ))}
             </nav>
@@ -144,7 +144,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-1.5 text-xs text-text-muted transition-all duration-200 hover:text-brand"
+            className="flex items-center gap-1.5 text-xs text-text-muted transition-all duration-200 hover:text-white"
           >
             Back to top
             <ArrowUpIcon />
