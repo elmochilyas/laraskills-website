@@ -2401,101 +2401,6 @@ export default function Home() {
             }),
             /*#__PURE__*/ _jsx(Section, {
                 variant: "elevated",
-                children: /*#__PURE__*/ _jsxs(PageContainer, {
-                    children: [
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "mb-12 text-center",
-                            children: [
-                                /*#__PURE__*/ _jsx("span", {
-                                    className: "section-eyebrow",
-                                    children: "Evidence"
-                                }),
-                                /*#__PURE__*/ _jsx("h2", {
-                                    className: "section-title",
-                                    children: "Research & evidence"
-                                }),
-                                /*#__PURE__*/ _jsx("p", {
-                                    className: "section-lead mx-auto",
-                                    children: "In an attribution study, Laraskills was tested against baseline coding agents across multiple Laravel implementation scenarios. The results are measured and reproducible."
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4",
-                            children: [
-                                /*#__PURE__*/ _jsxs("div", {
-                                    className: "card flex flex-col items-center p-6 text-center group",
-                                    children: [
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "font-display text-3xl font-semibold tracking-tight text-brand sm:text-4xl transition-transform duration-300 group-hover:scale-105",
-                                            children: "9"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "mt-1.5 text-sm text-text-muted",
-                                            children: "Isolated OpenCode runs"
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ _jsxs("div", {
-                                    className: "card flex flex-col items-center p-6 text-center group",
-                                    children: [
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "font-display text-3xl font-semibold tracking-tight text-brand sm:text-4xl transition-transform duration-300 group-hover:scale-105",
-                                            children: "3"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "mt-1.5 text-sm text-text-muted",
-                                            children: "Laravel implementation scenarios"
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ _jsxs("div", {
-                                    className: "card flex flex-col items-center p-6 text-center group",
-                                    children: [
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "font-display text-3xl font-semibold tracking-tight text-brand sm:text-4xl transition-transform duration-300 group-hover:scale-105",
-                                            children: "100%"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "mt-1.5 text-sm text-text-muted",
-                                            children: "Test & Pint pass rate"
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ _jsxs("div", {
-                                    className: "card flex flex-col items-center p-6 text-center group",
-                                    children: [
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "font-display text-3xl font-semibold tracking-tight text-brand sm:text-4xl transition-transform duration-300 group-hover:scale-105",
-                                            children: "2/3"
-                                        }),
-                                        /*#__PURE__*/ _jsx("span", {
-                                            className: "mt-1.5 text-sm text-text-muted",
-                                            children: "Required-context mode won"
-                                        })
-                                    ]
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _jsxs("div", {
-                            className: "mt-8 text-center",
-                            children: [
-                                /*#__PURE__*/ _jsx("p", {
-                                    className: "mb-4 text-sm text-text-muted",
-                                    children: "These results are from a controlled study and do not claim Laraskills always outperforms baseline agents. Performance depends on task complexity, agent choice, and configuration."
-                                }),
-                                /*#__PURE__*/ _jsx(Button, {
-                                    variant: "secondary",
-                                    href: "/research",
-                                    children: "Read the research"
-                                })
-                            ]
-                        })
-                    ]
-                })
-            }),
-            /*#__PURE__*/ _jsx(Section, {
-                variant: "elevated",
                 children: /*#__PURE__*/ _jsx(PageContainer, {
                     children: /*#__PURE__*/ _jsxs("div", {
                         className: "mx-auto max-w-2xl text-center",
@@ -2507,6 +2412,20 @@ export default function Home() {
                             /*#__PURE__*/ _jsx("p", {
                                 className: "section-lead mx-auto",
                                 children: "Install Laraskills and give your coding agent Laravel-specific context in seconds."
+                            }),
+                            /*#__PURE__*/ _jsxs("p", {
+                                className: "mt-4 text-xs text-text-muted",
+                                children: [
+                                    "Early validation: 9 isolated OpenCode runs across 3 Laravel scenarios. ",
+                                    /*#__PURE__*/ _jsxs("a", {
+                                        href: "/research",
+                                        className: "text-accent hover:text-accent-dim transition-colors",
+                                        children: [
+                                            "Read the study",
+                                            "\u00A0\u2192"
+                                        ]
+                                    })
+                                ]
                             }),
                             /*#__PURE__*/ _jsxs(Card, {
                                 featured: true,
