@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Three homepage sections — supported coding agents/tools grid, research/evidence summary, and final call-to-action — that build visitor trust through transparent tool support and honest research evidence.
+Two homepage sections — supported coding agents/tools grid and final call-to-action — that build visitor trust through transparent tool support, with detailed evidence deferred to the `/research` page.
 
 ## Requirements
 
@@ -69,33 +69,27 @@ The system SHALL display a unified Developer Dock section on the homepage showin
 - **THEN** spacing SHALL be clean and the section SHALL NOT be excessively tall
 - **THEN** the section SHALL look good as a standalone screenshot
 
-### Requirement: Research section displays study evidence
+### Requirement: Inline credibility note inside final CTA section
 
-The system SHALL display a research/evidence summary section presenting transparent study results.
+The system SHALL display a small inline credibility note inside the final CTA section as a quiet footnote.
 
-#### Scenario: Section displays 4 research facts
-- **WHEN** the research section is rendered
-- **THEN** it SHALL display these 4 facts:
-  - 9 isolated OpenCode runs
-  - 3 Laravel implementation scenarios
-  - 100% test and Pint pass rate
-  - Required-context mode won 2 of 3 scenarios
+#### Scenario: Inline note appears after subtitle and before terminal card
+- **WHEN** the final CTA section is rendered
+- **THEN** a small `<p>` element SHALL appear after the section subtitle and before the terminal command card
+- **THEN** the note SHALL read: "Early validation: 9 isolated OpenCode runs across 3 Laravel scenarios. Read the study →"
+- **THEN** the "Read the study →" portion SHALL be an `<a>` element linking to `/research`
+- **THEN** the note SHALL use `text-xs text-text-muted` styling
+- **THEN** the link SHALL use the accent color (`text-accent`)
 
-#### Scenario: Facts are presented as styled stat items
-- **WHEN** a research fact is rendered
-- **THEN** it SHALL display a prominent value and a descriptive label below it
+#### Scenario: Note is visually quiet
+- **WHEN** the inline note is rendered
+- **THEN** it SHALL NOT be wrapped in any card, border, background, icon, or chip
+- **THEN** it SHALL NOT be rendered inside a `Section` wrapper or any standalone section container
+- **THEN** it SHALL be a plain text footnote within the final CTA section's content flow
 
-#### Scenario: Section includes honest framing text
-- **WHEN** the research section is rendered
-- **THEN** it SHALL include text explicitly noting these are study results, without claiming Laraskills always beats baseline agents
-
-#### Scenario: Section includes a "Read the research" link
-- **WHEN** the research section is rendered
-- **THEN** it SHALL include a link labeled "Read the research" pointing to `/research`
-
-#### Scenario: No inflated claims are made
-- **WHEN** the research section is inspected
-- **THEN** it SHALL NOT claim Laraskills always outperforms generic agents, and SHALL use honest transparent language
+#### Scenario: No inflated claims
+- **WHEN** the homepage is inspected
+- **THEN** it SHALL NOT claim Laraskills always outperforms generic agents, SHALL NOT call the study a benchmark, and SHALL use honest transparent language
 
 ### Requirement: Final call-to-action section closes the page
 
@@ -123,7 +117,7 @@ The system SHALL display a final call-to-action section at the bottom of the hom
 
 ### Requirement: All sections reuse existing foundation components
 
-The system SHALL build all three proof sections using existing components without introducing new UI libraries.
+The system SHALL build all proof sections using existing components without introducing new UI libraries.
 
 #### Scenario: Sections use Section and PageContainer
 - **WHEN** any proof section is rendered
@@ -132,3 +126,7 @@ The system SHALL build all three proof sections using existing components withou
 #### Scenario: No external UI libraries are used
 - **WHEN** the proof sections are inspected
 - **THEN** all styling SHALL use existing CSS design tokens and Tailwind utilities
+
+#### Scenario: Inline credibility note uses plain HTML elements
+- **WHEN** the inline credibility note is rendered
+- **THEN** it SHALL use simple `<p>` and `<a>` elements without any Card, Section, or custom component wrappers
